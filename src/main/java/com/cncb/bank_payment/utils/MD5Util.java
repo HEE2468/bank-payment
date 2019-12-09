@@ -15,7 +15,8 @@ import java.security.MessageDigest;
 public class MD5Util {
 	
 	protected static final Logger logger = LoggerFactory.getLogger(MD5Util.class);
-	
+
+
 	public static String getMD5_16(String plainText) {
 		String md5_16bit = null;
 		try {
