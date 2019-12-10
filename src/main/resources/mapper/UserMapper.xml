@@ -7,4 +7,5 @@
     <select id="findPassword" resultType="com.cncb.bank_payment.entity.User">
         SELECT * FROM User WHERE name = #{name}
     </select>
+
 </mapper>
