@@ -54,7 +54,7 @@ public class MD5Util {
 	
 	public static void main(String[] args) {
 		System.out.println(MD5Util.getMD5_16("e10adc3949ba59abbe56e057f20f883e"));
-		System.out.println(MD5Util.getMD5_32("123321"));
+		System.out.println(MD5Util.getMD5_32("123456"));
 	}
 	
 }

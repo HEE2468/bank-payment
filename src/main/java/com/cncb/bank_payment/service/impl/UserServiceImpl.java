@@ -4,6 +4,7 @@ import com.cncb.bank_payment.dao.UserDao;
 import com.cncb.bank_payment.entity.User;
 import com.cncb.bank_payment.service.UserService;
 import com.cncb.bank_payment.utils.MD5Util;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,13 +25,13 @@ public class UserServiceImpl implements UserService {
         String password = user.getPassword();
         String md5Before = MD5Util.getMD5_32(password);
         User userCheck = userDao.findPassword(user.getName());
-        if(userCheck == null){
+        if (userCheck == null) {
             return null;
         }
-        String md5After = MD5Util.getMD5_32(userCheck.getPassword());
-        if(md5After.equals(md5Before)){
+        String md5After = userCheck.getPassword();
+        if (md5After.equals(md5Before)) {
             return userCheck;
-        }else{
+        } else {
             return null;
         }
     }
