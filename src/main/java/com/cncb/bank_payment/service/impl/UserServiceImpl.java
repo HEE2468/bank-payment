@@ -21,13 +21,13 @@ public class UserServiceImpl implements UserService {
     @Override
     public User login(User user) {
         // 密码
-        String password = user.getUser_password();
+        String password = user.getUser_paw();
         String md5Before = MD5Util.getMD5_32(password);
         User userCheck = userDao.findPassword(user.getUser_name());
         if (userCheck == null) {
             return null;
         }
-        String md5After = userCheck.getUser_password();
+        String md5After = userCheck.getUser_paw();
         if (md5After.equals(md5Before)) {
             return userCheck;
         } else {

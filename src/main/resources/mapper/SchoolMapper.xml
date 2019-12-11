@@ -4,5 +4,28 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cncb.bank_payment.dao.SchoolDao">
 
+    <!-- 学校类别-学校名称-学院名称联动查询 -->
+    <resultMap id="SchoolCategoryMap" type="com.cncb.bank_payment.entity.SchoolCategoryDTO">
+        <collection property="schoolNames" select="selectSchoolClass" column="school_class_id"/>
+    </resultMap>
+
+    <select id="findStudentInfo" resultMap="SchoolCategoryMap">
+        SELECT school_class_id,school_class AS schoolCategory FROM school_class GROUP BY schoolCategory
+    </select>
+
+    <resultMap id="AcademyMap" type="com.cncb.bank_payment.entity.SchoolDTO">
+        <result column="school_name" property="schoolName"/>
+        <collection property="academys" select="selectDep" column="school_class_id"/>
+    </resultMap>
+
+    <!-- 学校名称 -->
+    <select id="selectSchoolClass" parameterType="java.lang.String" resultMap="AcademyMap">
+        SELECT school_class_id,school_name FROM School WHERE school_class_id = #{school_class_id} GROUP BY school_name
+    </select>
+
+    <!-- 学院名称 -->
+    <select id="selectDep" resultType="com.cncb.bank_payment.entity.DepDTO">
+        SELECT dep_name AS depName FROM School WHERE school_class_id = #{school_class_id}
+    </select>
 
 </mapper>

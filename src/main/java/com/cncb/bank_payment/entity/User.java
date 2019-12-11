@@ -1,7 +1,5 @@
 package com.cncb.bank_payment.entity;
 
-import com.cncb.bank_payment.utils.EntityIDFactory;
-
 /**
  * @author HEE
  * @date 2019/12/9
@@ -12,8 +10,8 @@ public class User {
     private String user_id;
     private String user_tel;
     private String user_name;
-    private String user_identity;
-    private String user_password;
+    private String identity;
+    private String user_paw;
 
     public String getUser_id() {
         return user_id;
@@ -39,19 +37,19 @@ public class User {
         this.user_name = user_name;
     }
 
-    public String getUser_identity() {
-        return user_identity;
+    public String getIdentity() {
+        return identity;
     }
 
-    public void setUser_identity(String user_identity) {
-        this.user_identity = user_identity;
+    public void setIdentity(String identity) {
+        this.identity = identity;
     }
 
-    public String getUser_password() {
-        return user_password;
+    public String getUser_paw() {
+        return user_paw;
     }
 
-    public void setUser_password(String user_password) {
-        this.user_password = user_password;
+    public void setUser_paw(String user_paw) {
+        this.user_paw = user_paw;
     }
 }

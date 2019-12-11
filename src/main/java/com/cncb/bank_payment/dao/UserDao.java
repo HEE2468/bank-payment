@@ -15,4 +15,6 @@ public interface UserDao {
 
     User findPassword(String name);
 
+    int insertUser(User user);
+
 }

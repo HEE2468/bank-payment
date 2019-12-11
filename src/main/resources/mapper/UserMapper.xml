@@ -5,7 +5,28 @@
 <mapper namespace="com.cncb.bank_payment.dao.UserDao">
 
     <select id="findPassword" resultType="com.cncb.bank_payment.entity.User">
-        SELECT * FROM User WHERE name = #{name}
+        SELECT * FROM User WHERE user_name = #{name}
     </select>
+
+    <insert id="insertUser" parameterType="com.cncb.bank_payment.entity.User">
+        INSERT INTO User(
+        <trim suffixOverrides=",">
+            user_id,
+            user_name,
+            user_tel,
+            identity,
+            user_paw
+        </trim>
+        )
+        VALUES (
+        <trim suffixOverrides=",">
+            #{user_id},
+            #{user_name},
+            #{user_tel},
+            #{identity},
+            #{user_paw}
+        </trim>
+        )
+    </insert>
 
 </mapper>
