@@ -10,7 +10,7 @@ public class Card {
     private String card_tel;
     private String card_no;
     private String card_name;
-    private String identity;
+    private String idenity;
     private Float card_m;
     private String card_passward;
     private String user_id;
@@ -47,12 +47,12 @@ public class Card {
         this.card_name = card_name;
     }
 
-    public String getIdentity() {
-        return identity;
+    public String getIdenity() {
+        return idenity;
     }
 
-    public void setIdentity(String identity) {
-        this.identity = identity;
+    public void setIdenity(String idenity) {
+        this.idenity = idenity;
     }
 
     public Float getCard_m() {

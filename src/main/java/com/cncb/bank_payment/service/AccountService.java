@@ -1,6 +1,6 @@
 package com.cncb.bank_payment.service;
 
-import com.cncb.bank_payment.entity.Account;
+import com.cncb.bank_payment.entity.User;
 
 /**
  * @author HEE
@@ -9,6 +9,6 @@ import com.cncb.bank_payment.entity.Account;
  */
 public interface AccountService {
 
-    int insertAccount(Account account);
+    int insertAccount(User user);
 
 }

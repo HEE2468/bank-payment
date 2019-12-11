@@ -10,7 +10,7 @@ public class User {
     private String user_id;
     private String user_tel;
     private String user_name;
-    private String identity;
+    private String idenity;
     private String user_paw;
 
     public String getUser_id() {
@@ -37,12 +37,12 @@ public class User {
         this.user_name = user_name;
     }
 
-    public String getIdentity() {
-        return identity;
+    public String getIdenity() {
+        return idenity;
     }
 
-    public void setIdentity(String identity) {
-        this.identity = identity;
+    public void setIdenity(String idenity) {
+        this.idenity = idenity;
     }
 
     public String getUser_paw() {
