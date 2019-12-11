@@ -3,6 +3,46 @@
         "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cncb.bank_payment.dao.PayfeeInfoDao">
+    <resultMap id="PayfeeMap" type="com.cncb.bank_payment.entity.PayfeeInfo">
+        <id column="payfee_id" property="payfee_id" jdbcType="VARCHAR" />
+        <result column="user_id" property="user_id" jdbcType="VARCHAR" />
+        <result column="payfee" property="payfee" jdbcType="FLOAT" />
+        <result column="payfee_date" property="payfee_date" jdbcType="TIMESTAMP" />
+        <result column="student_id" property="student_id" jdbcType="VARCHAR" />
+    </resultMap>
+    <resultMap id="CheckRecordMap" type="com.cncb.bank_payment.entity.CheckRecord">
+        <id column="check_id" property="payfee_id" jdbcType="VARCHAR" />
+        <result column="record_date" property="record_date" jdbcType="TIMESTAMP" />
+        <result column="card_id" property="payfee" jdbcType="VARCHAR" />
+        <result column="bank_flow" property="payfee_date" jdbcType="VARCHAR" />
+        <result column="user_id" property="student_id" jdbcType="VARCHAR" />
+        <result column="payfee" property="payfee" jdbcType="FLOAT" />
+        <result column="check_status" property="check_status" jdbcType="VARCHAR" />
+    </resultMap>
 
+    <select id="getPayfeeFromStudentId" resultType="java.util.HashMap">
+        SELECT
+            payfee_info.student_id,
+            payfee_info.payfee_date,
+            payfee_info.payfee_id,
+            payfee_info.payfee needPay,
+            check_record.payfee alreadyPay
+        FROM
+            payfee_info
+        LEFT JOIN check_record ON check_record.payfee_id = payfee_info.payfee_id AND check_record.check_status = "success"
+        WHERE
+            payfee_info.student_id = #{studentId}
+    </select>
 
+    <insert id="addCheckRecord">
+        INSERT INTO check_record
+        VALUES
+	    (#{check_id, jdbcType=VARCHAR},
+	    #{record_date, jdbcType=TIMESTAMP},
+	    #{card_id, jdbcType=VARCHAR},
+	    #{bank_flow, jdbcType=VARCHAR},
+	    #{user_id, jdbcType=VARCHAR},
+	    #{payfee, jdbcType=FLOAT},
+	    #{check_status, jdbcType=VARCHAR}
+	</insert>
 </mapper>
