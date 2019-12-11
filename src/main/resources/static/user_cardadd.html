@@ -3,14 +3,12 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!-->
-<html class="no-js" xmlns="http://www.w3.org/1999/html"> <!--<![endif]-->
+<html class="no-js"> <!--<![endif]-->
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="description" content="Bingo One page parallax responsive HTML Template ">
-
     <meta name="author" content="">
-
-    <title>中信银行惠支付平台</title>
+    <title>中信银行惠缴付平台</title>
 
     <!-- Mobile Specific Meta
       ================================================== -->
@@ -21,9 +19,9 @@
 
     <!-- CSS
     ================================================== -->
-    <!-- Themefisher Icon font -->
+    <!-- Themefisher Icon font --控件样式>
     <link rel="stylesheet" href="plugins/themefisher-font.v-2/style.css">
-    <!-- bootstrap.min css -->
+    <! -- bootstrap.min css -->
     <link rel="stylesheet" href="plugins/bootstrap/dist/css/bootstrap.min.css">
     <!-- Slick Carousel -->
     <link rel="stylesheet" href="plugins/slick-carousel/slick/slick.css">
@@ -31,15 +29,14 @@
     <!-- Main Stylesheet -->
     <link rel="stylesheet" href="css/style.css">
 
-
-
 </head>
 
 <body id="body">
 <!--
 Fixed Navigation
 ==================================== -->
-<<section class="header  navigation">
+
+<section class="header  navigation">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -79,34 +76,42 @@ Fixed Navigation
     </div>
 </section>
 
+<!--
+Welcome Slider
+==================================== -->
 
-<!-- Srart Contact Us
-		=========================================== -->
+
+<!--
+Start About Section
+==================================== -->
 <section class="contact-us section bg-gray" id="contact">
     <div class="container">
         <div class="row">
             <div class="col">
                 <div class="title text-center">
-                    <h5>请输入付款信息</h5>
+                    <h5>请绑定您的银行卡</h5>
                 </div>
             </div>
         </div>
+        <p></p>
         <div class="row">
             <!-- Contact Form -->
             <div class="contact-form col-12 col-md-6  mx-auto" >
-                <form id="contact-form" method="post" action="sendmail.php" role="form">
-                    <div class="updown" align="center">
-                        <h6>请选择支付银行卡</h6>
-                        <select id="bankcard" onChange="change()">
-                            <option selected="selected">-请选择-</option>
-                        </select>
-                        <p></p>
+                <form id="contact-form" method="post" action="edupay_payment.html" role="form">
+                    <div class="form-group">
+                        <input type="text" placeholder="请输入银行卡号" class="form-control" name="cardnum" id="cardnum">
                     </div>
                     <div class="form-group">
-                        <input type="text" placeholder="支付密码" class="form-control" name="paypassword" id="paypassword">
+                        <input type="text" placeholder="请输入姓名" class="form-control" name="carname" id="cardname">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" placeholder="请输入身份证" class="form-control" name="cernum" id="cernum">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" placeholder="请输入预留手机号" class="form-control" name="phonenum" id="phonenum">
                     </div>
                     <div id="cf-submit">
-                        <a href="index.html" class="btn btn-main">确认</a>
+                        <a href="edupay_payinfo.html" class="btn btn-main">确认绑定</a>
                     </div>
                 </form>
             </div>
@@ -114,7 +119,8 @@ Fixed Navigation
         </div> <!-- end row -->
 
     </div> <!-- end container -->
-</section> <!-- end section -->
+</section>
+ <!-- End section -->
 
 <footer id="footer" class="bg-one">
     <div class="top-footer">
@@ -183,27 +189,27 @@ Essential Scripts
 <script src="plugins/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- Owl Carousel -->
 <script src="plugins/slick-carousel/slick/slick.min.js"></script>
-
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script>
+    var trace1 = {
+        x: [1, 2, 3, 4],
+        y: [10, 15, 13, 17],
+        type: 'scatter'
+    };
+    var trace2 = {
+        x: [1, 2, 3, 4],
+        y: [16, 5, 11, 9],
+        type: 'scatter'
+    };
+    var data = [trace1, trace2];
+    Plotly.newPlot('myDiv', data);
+</script>
 <!-- Smooth Scroll js -->
 <script src="plugins/smooth-scroll/dist/js/smooth-scroll.min.js"></script>
+
+
 <!-- Custom js -->
 <script src="js/script.js"></script>
-<script>
-$(function change(){
-$.ajax({
-type:"POST",
-url:Feng.ctxPath + "/tCommonCargoLocation/queryWhun",
-dataType: "json",
-contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-async: false,
-cache: false,
-success: function (data) {
-$.each(data,function(index,item){
-$('#bankcard').append(new Option(item.cardnum));//往下拉菜单里添加元素
-})
-}
-})
-});
-</script>
+
 </body>
 </html>

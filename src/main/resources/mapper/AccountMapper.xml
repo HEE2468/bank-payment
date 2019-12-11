@@ -4,5 +4,25 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cncb.bank_payment.dao.AccountDao">
 
+    <insert id="insertAccount" parameterType="com.cncb.bank_payment.entity.Account">
+        INSERT INTO Account(
+        <trim suffixOverrides=",">
+            account_id,
+            account_tel,
+            user_id,
+            account_password,
+            idenity
+        </trim>
+        )
+        VALUES (
+        <trim suffixOverrides=",">
+            #{account_id},
+            #{account_tel},
+            #{user_id},
+            #{account_password},
+            #{idenity}
+        </trim>
+        )
+    </insert>
 
 </mapper>

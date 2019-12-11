@@ -7,9 +7,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="description" content="Bingo One page parallax responsive HTML Template ">
-  
   <meta name="author" content="">
-
   <title>中信银行惠支付平台</title>
 
 <!-- Mobile Specific Meta
@@ -30,11 +28,9 @@
   <link rel="stylesheet" href="plugins/slick-carousel/slick/slick-theme.css">
   <!-- Main Stylesheet -->
   <link rel="stylesheet" href="css/style.css">
-
   
 
 </head>
-
 <body id="body">
 <!--
 Fixed Navigation
@@ -65,10 +61,10 @@ Fixed Navigation
                                 <a class="nav-link" href="insurancepay.html">保险医疗</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="login.html">登录</a>
+                                <a class="nav-link" href="user.html">我的</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="signup.html">注册</a>
+                                <a class="nav-link" href="login.html">登录</a>
                             </li>
                         </ul>
                     </div>
@@ -93,21 +89,54 @@ Fixed Navigation
 			</div>
             <div class="updown" align="center">
                     <h6>学校类别：</h6>
-                    <select id="schooltype" onChange="change()">
+                <div class="select_list">
+                    <select class="select_demo" id="schooltype" onChange="change()">
                         <option selected="selected">幼儿园</option>
                         <option>小学</option>
                         <option>中学</option>
                         <option>大学</option>
                     </select>
+                </div>
             <p></p>
                     <h6>学校名称：</h6>
-                    <select id="schoolname">
+                <div class="select_list">
+                    <select class="select_demo" id="schoolname">
                         <option>阳光小学</option>
                         <option>春熙幼儿园</option>
                         <option>阳光中学</option>
                         <option>阳光大学</option>
                         <option selected="selected">阳光幼儿园</option>
                     </select>
+                </div>
+                <style media="screen">
+                 .select_demo,
+        .select_list {
+            width: 400px;
+            height: 60px;
+        }
+
+        .select_demo {
+            background-color: #fbe4e8;
+        }
+
+        .select_list {
+            border: solid 2px #96cffd;
+            font-size: 30px;
+            padding-left: 20px;
+            /*很关键：将默认的select选择框样式清除*/
+            appearance: none;
+            -moz-appearance: none;
+            -webkit-appearance: none;
+             /*在选择框的最右侧中间显示小箭头图片*/
+            background: url("images/icons/updown_icon.png") no-repeat scroll right center transparent;
+            background-position-x: 330px;
+        }
+
+        /*清除ie的默认选择框样式清除，隐藏下拉箭头*/
+        select::-ms-expand {
+            display: none;
+        }
+    </style>
             </div>
             <p></p>
             <div class="row">
@@ -121,7 +150,7 @@ Fixed Navigation
 							<input type="text" placeholder="请输入学号" class="form-control" name="stdnum" id="stdnum">
 						</div>
                         <div id="cf-submit">
-                            <a href="edupay_payment.html" class="btn btn-main">确认</a>
+                            <a href="edupay_payinfo.html" class="btn btn-main">确认</a>
                         </div>
                     </form>
 				</div>
@@ -198,20 +227,7 @@ Fixed Navigation
     <script src="plugins/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- Owl Carousel -->
     <script src="plugins/slick-carousel/slick/slick.min.js"></script>
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-    <script>
-        var trace1 = {
-  x: [1, 2, 3, 4], 
-  y: [10, 15, 13, 17], 
-  type: 'scatter'
-};
-var trace2 = {
-  x: [1, 2, 3, 4], 
-  y: [16, 5, 11, 9], 
-  type: 'scatter'
-};
-var data = [trace1, trace2];
-Plotly.newPlot('myDiv', data);
+
     </script>
     <!-- Smooth Scroll js -->
     <script src="plugins/smooth-scroll/dist/js/smooth-scroll.min.js"></script>

@@ -1,7 +1,5 @@
 package com.cncb.bank_payment.entity;
 
-import com.cncb.bank_payment.utils.EntityIDFactory;
-
 /**
  * @author HEE
  * @date 2019/12/10
@@ -9,10 +7,10 @@ import com.cncb.bank_payment.utils.EntityIDFactory;
  */
 public class Account {
     private String account_id;
-    private String account_num;
     private String account_tel;
     private String account_password;
     private String user_id;
+    private String idenity;
 
     public String getAccount_id() {
         return account_id;
@@ -20,14 +18,6 @@ public class Account {
 
     public void setAccount_id(String account_id) {
         this.account_id = account_id;
-    }
-
-    public String getAccount_num() {
-        return account_num;
-    }
-
-    public void setAccount_num(String account_num) {
-        this.account_num = account_num;
     }
 
     public String getAccount_tel() {
@@ -52,5 +42,13 @@ public class Account {
 
     public void setUser_id(String user_id) {
         this.user_id = user_id;
+    }
+
+    public String getIdenity() {
+        return idenity;
+    }
+
+    public void setIdenity(String idenity) {
+        this.idenity = idenity;
     }
 }
