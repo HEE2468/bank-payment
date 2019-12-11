@@ -26,10 +26,12 @@
             payfee_info.payfee_date,
             payfee_info.payfee_id,
             payfee_info.payfee needPay,
-            check_record.payfee alreadyPay
+            check_record.payfee alreadyPay,
+	        loan.id isLoan
         FROM
             payfee_info
         LEFT JOIN check_record ON check_record.payfee_id = payfee_info.payfee_id AND check_record.check_status = "success"
+        LEFT JOIN loan ON loan.payfee_id = payfee_info.payfee_id
         WHERE
             payfee_info.student_id = #{studentId}
     </select>

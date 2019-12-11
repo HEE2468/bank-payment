@@ -8,6 +8,9 @@ import com.cncb.bank_payment.service.LoanService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * @author dailiwen
  * @date 2019/12/10
@@ -16,6 +19,7 @@ import org.springframework.stereotype.Service;
 public class LoanServiceImpl implements LoanService {
     @Autowired
     LoanDao loanDao;
+
 
     @Override
     public Loan getLoan(String payfeeId) {
