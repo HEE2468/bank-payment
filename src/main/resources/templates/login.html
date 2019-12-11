@@ -1,11 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> 
+<html class="no-js"> <!--<![endif]-->
 <head>
-    <meta charset="UTF-8">
-    <link href="layui/css/layui.css" rel="stylesheet"/>
-    <title>Title</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="description" content="Bingo One page parallax responsive HTML Template ">
+  
+  <meta name="author" content="">
+
+  <title>用户登录</title>
+
+<!-- Mobile Specific Meta
+  ================================================== -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <!-- Favicon -->
+  <link rel="shortcut icon" type="image/x-icon" href="img/favicon.png" />
+  
+  <!-- CSS
+  ================================================== -->
+  <!-- Themefisher Icon font -->
+  <link rel="stylesheet" href="plugins/themefisher-font.v-2/style.css">
+  <!-- bootstrap.min css -->
+  <link rel="stylesheet" href="plugins/bootstrap/dist/css/bootstrap.min.css">
+  <!-- Slick Carousel -->
+  <link rel="stylesheet" href="plugins/slick-carousel/slick/slick.css">
+  <link rel="stylesheet" href="plugins/slick-carousel/slick/slick-theme.css">
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+
+  
+
 </head>
-<body>
+
+<body id="body">
+
+<!--
+Fixed Navigation
+==================================== -->
 <section class="header  navigation">
     <div class="container">
         <div class="row">
@@ -23,19 +57,19 @@
                                 <a class="nav-link" href="index.html">首页 <span class="sr-only">(current)</span></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="pricing.html">生活缴费</a>
+                                <a class="nav-link" href="lifepay.html">生活缴费</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="faq.html">教育培训</a>
+                                <a class="nav-link" href="edupay.html">教育培训</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="contact.html">insurancepay.html</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="login.html">登录</a>
+                                <a class="nav-link" href="insurancepay.html">保险医疗</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="user.html">我的</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="login.html">登录</a>
                             </li>
                         </ul>
                     </div>
@@ -45,66 +79,100 @@
         </div>
     </div>
 </section>
-<form class="layui-form" action="">
-    <div class="layui-form-item">
-        <label class="layui-form-label">用户名</label>
-        <div class="layui-input-inline">
-            <input type="text" name="name" lay-verify="required" autocomplete="off"
-                   placeholder="请输入用户名" class="layui-input">
+<section class="signin-page account">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 mx-auto">
+                <div class="block">
+                    <h2 class="text-center">用户登录</h2>
+                    
+                    <form class="text-left clearfix mt-50" action="index.html" >
+                        <div class="form-group">
+                            <input type="text" class="form-control"  placeholder="手机号">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" placeholder="密码">
+                        </div>
+                        <button type="submit" class="btn btn-main" >登录</button>
+                    </form>
+                    <p class="mt-20">未注册？<a href="signup.html"> 注册新用户</a></p>
+                    <p><a href="#"> 忘记密码？</a></p>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">密码</label>
-        <div class="layui-input-inline">
-            <input type="password" name="password" lay-verify="pass" placeholder="请输入密码"
-                   autocomplete="off" class="layui-input">
-        </div>
-        <div class="layui-form-mid layui-word-aux">请填写6到12位密码</div>
-    </div>
-    <div class="layui-form-item">
-        <div class="layui-input-block">
-            <button type="submit" class="layui-btn" lay-submit="" lay-filter="login">登录</button>
-        </div>
-    </div>
-</form>
-</body>
-<script src="js/jquery/jquery.min.js"></script>
-<script src="layui/layui.js"></script>
-<script>
-    layui.use(['form'], function () {
-        var form = layui.form;
+</section>
+ <footer id="footer" class="bg-one">
+     <div class="top-footer">
+         <div class="container">
+             <div class="row">
+                 <div class="col-sm-3 col-md-3 col-lg-3">
+                     <h3>联系我们</h3>
+                     <ul>
+                         <li><a href="#">营业网点</a></li>
+                         <li><a href="#">信用卡中心：4008895558</a></li>
+                         <li><a href="#">客户中心：95558</a></li>
+                     </ul>
+                 </div>
+                 <!-- End of .col-sm-3 -->
 
-        //自定义验证规则
-        form.verify({
-            pass: [
-                /^[\S]{6,12}$/
-                , '密码必须6到12位，且不能出现空格'
-            ]
-        });
+                 <div class="col-sm-3 col-md-3 col-lg-3">
+                     <h3>帮助中心</h3>
+                     <ul>
+                         <li><a href="#">在线服务：个人/公司/信用卡</a></li>
+                         <li><a href="#">常见问题</a></li>
+                         <li><a href="#">网站地图</a></li>
+                     </ul>
+                 </div>
+                 <!-- End of .col-sm-3 -->
 
-        form.on('submit(login)', function (data) {
-            $.ajax({
-                url: "user/login",
-                type: "post",
-                data: {
-                    name: data.field.name,
-                    password: data.field.password
-                },
-                error: function (res) {
-                    layer.alert("出错了，请与管理员联系", {icon: 2});
-                },
+                 <div class="col-sm-3 col-md-3 col-lg-3">
+                     <h3>关于中信</h3>
+                     <ul>
+                         <li><a href="#">投资者关系</a></li>
+                         <li><a href="#">公司治理</a></li>
+                         <li><a href="#">中信新闻</a></li>
+                         <li><a href="#">人才招聘</a></li>
+                     </ul>
+                 </div>
+                 <!-- End of .col-sm-3 -->
+                 <div class="col-sm-3 col-md-3 col-lg-3">
+                     <h3>分行专区</h3>
+                     <ul>
+                         <li><a href="#">分行机构</a></li>
+                         <li><a href="#">友情链接</a></li>
+                     </ul>
+                 </div>
+                 <!-- End of .col-sm-3 -->
+             </div>
+         </div> <!-- end container -->
+     </div>
+     <div class="footer-bottom">
+         <h5>中信银行股份有限公司版权所有 Copyright © CITIC Bank All rights reserved</h5> <h6>京公网安备11010502020433号 京ICP备16038101号</h6>
+     </div>
+ </footer> <!-- end footer -->
 
-                success: function (res) {
-                    console.log(res);
-                    if (res === "OK") {
-                        layer.alert("登录成功", {icon: 1});
-                    } else {
-                        layer.alert("用户名或密码错误", {icon: 2});
-                    }
-                }
-            });
-            return false;
-        });
-    });
-</script>
-</html>
+
+    <!-- end Footer Area
+    ========================================== -->
+
+    
+    <!-- 
+    Essential Scripts
+    =====================================-->
+    
+    <!-- Main jQuery -->
+    <script src="plugins/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap 3.7 -->
+    <script src="plugins/bootstrap/dist/js/popper.min.js"></script>
+    <script src="plugins/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- Owl Carousel -->
+    <script src="plugins/slick-carousel/slick/slick.min.js"></script>
+
+    <!-- Smooth Scroll js -->
+    <script src="plugins/smooth-scroll/dist/js/smooth-scroll.min.js"></script>
+    <!-- Custom js -->
+    <script src="js/script.js"></script>
+
+  </body>
+  </html>

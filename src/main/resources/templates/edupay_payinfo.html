@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>layout 后台大布局 - Layui</title>
+    <! -- bootstrap.min css -->
+    <link rel="stylesheet" href="plugins/bootstrap/dist/css/bootstrap.min.css">
+    <!-- Slick Carousel -->
+    <link rel="stylesheet" href="plugins/slick-carousel/slick/slick.css">
+    <link rel="stylesheet" href="plugins/slick-carousel/slick/slick-theme.css">
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+    <link href="layui/css/layui.css" rel="stylesheet"/>
+    <link href="css/theme.css" rel="stylesheet"/>
+</head>
+<body>
+
+<section class="header  navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <nav class="navbar navbar-expand-md">
+                    <a class="navbar-brand" href="index.html">
+                        <img src="images/logo1.png" alt="" width="150px">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                            data-target="#navbarSupportedContent"
+                            aria-controls="navbarSupportedContent" aria-expanded="false"
+                            aria-label="Toggle navigation">
+                        <span class="tf-ion-android-menu"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="index.html">首页 <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="pricing.html">生活缴费</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="faq.html">教育培训</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="contact.html">社会保障</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="login.html">登录</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="signup.html">注册</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+<div style="width: 70%; margin: 0 auto">
+    <button type="button" class="layui-btn layui-btn-lg"
+            style="margin:20px 0 10px 89%; background: #D70010;">缴纳费用
+    </button>
+    <table class="layui-hide" id="test" lay-filter="test"></table>
+    <p id="payfee" style="color: #D70010; float: right; font-size: 20px">费用总额：0元</p>
+</div>
+
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-xs" lay-event="edit" style="background: #FFFFFF00;color: #CC0000">申请助学贷款</a>
+</script>
+
+<script src="layui/layui.js" charset="utf-8"></script>
+<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+
+<script>
+    var dataAll;
+    var tempPayfee = 0;
+    layui.use('table', function () {
+        var table = layui.table;
+
+        table.render({
+            elem: '#test'
+            , url: 'payfee/getPayfee?studentId=106144062017040601'
+            , method: 'get'
+            , toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
+            , defaultToolbar: ['exports', 'print']
+            , cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+            , parseData: function (res) {
+                dataAll = res;
+                return {
+                    "code": 0,
+                    "msg": "",
+                    "count": res.length,
+                    "data": res
+                }
+            }
+            , cols: [[
+                {type: 'checkbox', fixed: 'left'}
+                , {field: 'payfee_date', title: '学年', sort: true}
+                , {
+                    field: 'username', title: '收费名称', templet: function (d) {
+                        return "学费";
+                    }
+                }
+                , {field: 'needPay', title: '应收金额'}
+                , {
+                    field: 'alreadyPay', title: '已付金额', templet: function (d) {
+                        if (d.alreadyPay == null)
+                            return 0;
+                        return d.alreadyPay;
+                    }
+                }
+                , {
+                    field: 'experience', title: '未付金额', templet: function (d) {
+                        if (d.alreadyPay == null)
+                            return d.needPay;
+                        return accSub(d.needPay, d.alreadyPay);
+                    }
+                }
+                , {
+                    field: 'isLoan', title: '是否申请贷款', templet: function (d) {
+                        if (d.isLoan == null)
+                            return "否";
+                        return "是";
+                    }
+                }
+                , {fixed: 'right', title: '操作', toolbar: '#barDemo', width: 150}
+            ]]
+        });
+
+        table.on('checkbox(test)', function (obj) {
+            if (obj.type === "all") {
+                if (obj.checked === true) {
+                    tempPayfee = 0;
+
+                    for (let i = 0; i < dataAll.length; i++) {
+                        if (dataAll[i].alreadyPay === undefined) {
+                            tempPayfee = accAdd(tempPayfee, accSub(dataAll[i].needPay, 0));
+                        } else {
+                            tempPayfee = accAdd(tempPayfee, accSub(dataAll[i].needPay, dataAll[i].alreadyPay));
+                        }
+                    }
+                    document.getElementById("payfee").innerHTML= "费用总额：" + tempPayfee +"元";
+                } else {
+                    document.getElementById("payfee").innerHTML= "费用总额：0元";
+                    tempPayfee = 0;
+                }
+            } else {
+                if (obj.checked === true) {
+                    if (obj.data.alreadyPay === undefined) {
+                        tempPayfee = accAdd(tempPayfee, accSub(obj.data.needPay, 0));
+                    } else {
+                        tempPayfee = accAdd(tempPayfee, accSub(obj.data.needPay, obj.data.alreadyPay));
+                    }
+                    document.getElementById("payfee").innerHTML= "费用总额：" + tempPayfee +"元";
+                } else {
+                    if (obj.data.alreadyPay === undefined) {
+                        tempPayfee = accSub(tempPayfee, accSub(obj.data.needPay, 0));
+                    } else {
+                        tempPayfee = accSub(tempPayfee, accSub(obj.data.needPay, obj.data.alreadyPay));
+                    }
+                    document.getElementById("payfee").innerHTML= "费用总额：" + tempPayfee +"元";
+                }
+            }
+        });
+
+        //监听行工具事件
+        table.on('tool(test)', function (obj) {
+            var data = obj.data;
+            if (data.needPay - data.alreadyPay === 0) {
+                layer.alert("已付清，不需要申请助学贷款", {icon: 2});
+            } else {
+                window.location.href = 'loanApplication.html?payfee_id=' + data.payfee_id;
+            }
+        });
+    });
+
+    function accAdd(arg1, arg2) {
+        var r1, r2, m, c;
+        try {
+            r1 = arg1.toString().split(".")[1].length;
+        } catch (e) {
+            r1 = 0;
+        }
+        try {
+            r2 = arg2.toString().split(".")[1].length;
+        } catch (e) {
+            r2 = 0;
+        }
+        c = Math.abs(r1 - r2);
+        m = Math.pow(10, Math.max(r1, r2));
+        if (c > 0) {
+            var cm = Math.pow(10, c);
+            if (r1 > r2) {
+                arg1 = Number(arg1.toString().replace(".", ""));
+                arg2 = Number(arg2.toString().replace(".", "")) * cm;
+            } else {
+                arg1 = Number(arg1.toString().replace(".", "")) * cm;
+                arg2 = Number(arg2.toString().replace(".", ""));
+            }
+        } else {
+            arg1 = Number(arg1.toString().replace(".", ""));
+            arg2 = Number(arg2.toString().replace(".", ""));
+        }
+        return (arg1 + arg2) / m;
+    }
+
+    function accSub(arg1, arg2) {
+        var r1, r2, m, n;
+        try {
+            r1 = arg1.toString().split(".")[1].length;
+        } catch (e) {
+            r1 = 0;
+        }
+        try {
+            r2 = arg2.toString().split(".")[1].length;
+        } catch (e) {
+            r2 = 0;
+        }
+        m = Math.pow(10, Math.max(r1, r2)); //last modify by deeka //动态控制精度长度
+        n = (r1 >= r2) ? r1 : r2;
+        return ((arg1 * m - arg2 * m) / m).toFixed(n);
+    }
+</script>
+
+</body>
+</html>
