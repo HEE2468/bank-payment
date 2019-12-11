@@ -9,5 +9,5 @@ import com.cncb.bank_payment.entity.User;
  */
 public interface UserService {
 
-    User login(User user);
+    User login(String userTel, String userPaw);
 }

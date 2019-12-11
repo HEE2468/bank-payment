@@ -19,11 +19,12 @@ public class UserServiceImpl implements UserService {
     private UserDao userDao;
 
     @Override
-    public User login(User user) {
+    public User login(String userTel, String userPaw) {
         // 密码
+        User user = new User(userTel, userPaw);
         String password = user.getUser_paw();
         String md5Before = MD5Util.getMD5_32(password);
-        User userCheck = userDao.findPassword(user.getUser_name());
+        User userCheck = userDao.findPassword(user.getUser_tel());
         if (userCheck == null) {
             return null;
         }

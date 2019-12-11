@@ -13,6 +13,11 @@ public class User {
     private String idenity;
     private String user_paw;
 
+    public User(String user_tel, String user_paw) {
+        this.user_tel = user_tel;
+        this.user_paw = user_paw;
+    }
+
     public String getUser_id() {
         return user_id;
     }

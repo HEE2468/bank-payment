@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 @Component(value = "UserDao")
 public interface UserDao {
 
-    User findPassword(String name);
+    User findPassword(String userTel);
 
     int insertUser(User user);
 

@@ -19,7 +19,7 @@ public class LoginInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {       //请求进入这个拦截器
         HttpSession session = request.getSession();
-        if (session.getAttribute("loginName") == null) {
+        if (session.getAttribute("userId") == null) {
             //判断session中有没有user信息
             //System.out.println("进入拦截器");
             // 此处应该添加上server.servlet.context-path在你需要调用的页面前。

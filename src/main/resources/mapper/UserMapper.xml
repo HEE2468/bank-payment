@@ -5,7 +5,7 @@
 <mapper namespace="com.cncb.bank_payment.dao.UserDao">
 
     <select id="findPassword" resultType="com.cncb.bank_payment.entity.User">
-        SELECT * FROM User WHERE user_name = #{name}
+        SELECT * FROM User WHERE user_tel = #{userTel}
     </select>
 
     <insert id="insertUser" parameterType="com.cncb.bank_payment.entity.User">

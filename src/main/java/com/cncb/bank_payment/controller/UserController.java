@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpSession;
+
 /**
  * @author HEE
  * @date 2019/12/9
@@ -23,11 +25,14 @@ public class UserController {
     UserService userService;
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String login(User user) {
-        if (userService.login(user) == null) {
-            return "ERROR";
+    public String login(String userTel, String userPaw, HttpSession session) {
+        User result = userService.login(userTel, userPaw);
+        if (result != null) {
+            session.setAttribute("userId", result.getUser_id());
+            session.setAttribute("userName", result.getUser_name());
+            return "SUCCESS";
         } else {
-            return "OK";
+            return "FAIL";
         }
     }
 
