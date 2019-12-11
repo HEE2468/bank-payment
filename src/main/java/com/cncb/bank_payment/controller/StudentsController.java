@@ -1,7 +1,9 @@
 package com.cncb.bank_payment.controller;
 
+import com.cncb.bank_payment.entity.InputParameter;
 import com.cncb.bank_payment.service.StudentsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,4 +18,14 @@ public class StudentsController {
 
     @Autowired
     private StudentsService studentsService;
+
+    @RequestMapping("/findStudent")
+    public String findStudent(@RequestBody InputParameter parameter){
+
+        String id = studentsService.findStudent(parameter);
+        if( id == null){
+            return "failure";
+        }
+        return id;
+    }
 }

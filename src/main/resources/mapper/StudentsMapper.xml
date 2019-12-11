@@ -4,5 +4,23 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cncb.bank_payment.dao.StudentsDao">
 
+    <!-- 多条件查询学生信息 -->
+    <select id="findStudent" parameterType="com.cncb.bank_payment.entity.InputParameter" resultType="com.cncb.bank_payment.entity.Students">
+        SELECT * FROM Students AS st
+        LEFT JOIN School AS sc ON st.school_id = sc.school_id
+        WHERE
+        <trim prefixOverrides="and">
+            <if test="school_name!=null and school_name !=''">
+                AND sc.school_name = #{school_name}
+            </if>
+            <if test="dep_name!=null and dep_name !=''">
+                AND sc.dep_name = #{dep_name}
+            </if>
+            <if test="student_name!=null and student_name !=''">
+                AND st.student_name = #{student_name}
+            </if>
+        </trim>
+        GROUP BY st.student_id
+    </select>
 
 </mapper>

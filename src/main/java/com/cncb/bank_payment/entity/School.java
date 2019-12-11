@@ -1,5 +1,7 @@
 package com.cncb.bank_payment.entity;
 
+import java.util.List;
+
 /**
  * @author HEE
  * @date 2019/12/10
@@ -17,6 +19,8 @@ public class School {
     private String dep_name;
     private Float tuition;
     private Float accomodation;
+
+    private List<School> academys;
 
     public String getSchool_class_id() {
         return school_class_id;
@@ -80,5 +84,13 @@ public class School {
 
     public void setAccomodation(Float accomodation) {
         this.accomodation = accomodation;
+    }
+
+    public List<School> getAcademys() {
+        return academys;
+    }
+
+    public void setAcademys(List<School> academys) {
+        this.academys = academys;
     }
 }
