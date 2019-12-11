@@ -62,7 +62,7 @@ Fixed Navigation
                                 <a class="nav-link" href="edupay.html">教育培训</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="edupay_information.html">保险医疗</a>
+                                <a class="nav-link" href="insurancepay.html">保险医疗</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="login.html">登录</a>
@@ -87,42 +87,43 @@ Fixed Navigation
 			<div class="row">
 				<div class="col">
 					<div class="title text-center">
-						<p>请输入相关信息</p>
+						<h5>请输入相关信息</h5>
 					</div>
 				</div>
 			</div>
-			<div class="row">
+            <div class="updown" align="center">
+                    <h6>学校类别：</h6>
+                    <select id="schooltype" onChange="change()">
+                        <option selected="selected">幼儿园</option>
+                        <option>小学</option>
+                        <option>中学</option>
+                        <option>大学</option>
+                    </select>
+            <p></p>
+                    <h6>学校名称：</h6>
+                    <select id="schoolname">
+                        <option>阳光小学</option>
+                        <option>春熙幼儿园</option>
+                        <option>阳光中学</option>
+                        <option>阳光大学</option>
+                        <option selected="selected">阳光幼儿园</option>
+                    </select>
+            </div>
+            <p></p>
+            <div class="row">
 				<!-- Contact Form -->
 				<div class="contact-form col-12 col-md-6  mx-auto" >
-					<form id="contact-form" method="post" action="sendmail.php" role="form">
+					<form id="contact-form" method="post" action="payment.html" role="form">
 						<div class="form-group">
-							<input type="text" placeholder="Your Name" class="form-control" name="name" id="name">
+							<input type="text" placeholder="请输入姓名" class="form-control" name="stdname" id="stdname">
 						</div>
 						<div class="form-group">
-							<input type="email" placeholder="Your Email" class="form-control" name="email" id="email">
+							<input type="text" placeholder="请输入学号" class="form-control" name="stdnum" id="stdnum">
 						</div>
-						
-						<div class="form-group">
-							<input type="text" placeholder="Subject" class="form-control" name="subject" id="subject">
-						</div>
-						
-						<div class="form-group">
-							<textarea rows="6" placeholder="Message" class="form-control" name="message" id="message"></textarea>	
-						</div>
-						
-						<div id="mail-success" class="success">
-							Thank you. The Mailman is on His Way :)
-						</div>
-						
-						<div id="mail-fail" class="error">
-							Sorry, don't know what happened. Try later :(
-						</div>
-						
-						<div id="cf-submit">
-							<input type="submit" id="contact-submit" class="btn btn-transparent" value="Submit">
-						</div>						
-						
-					</form>
+                        <div id="cf-submit">
+                            <a href="edupay_payment.html" class="btn btn-main">确认</a>
+                        </div>
+                    </form>
 				</div>
 				<!-- ./End Contact Form -->
 			</div> <!-- end row -->
@@ -131,74 +132,53 @@ Fixed Navigation
 	</section> <!-- end section -->
 
 <footer id="footer" class="bg-one">
-  <div class="top-footer">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-3 col-md-3 col-lg-3">
-          <h3>INFORMATION</h3>
-          <ul>
-            <li><a href="#">Payment Option</a></li>
-            <li><a href="#">Free Schedule</a></li>
-            <li><a href="#">Getting Started</a></li>
-            <li><a href="#">Bitcoin Calculator</a></li>
-          </ul>
-        </div>
-        <!-- End of .col-sm-3 -->
+    <div class="top-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                    <h3>联系我们</h3>
+                    <ul>
+                        <li><a href="#">营业网点</a></li>
+                        <li><a href="#">信用卡中心：4008895558</a></li>
+                        <li><a href="#">客户中心：95558</a></li>
+                    </ul>
+                </div>
+                <!-- End of .col-sm-3 -->
 
-        <div class="col-sm-3 col-md-3 col-lg-3">
-          <h3>Our Services</h3>
-          <ul>
-            <li><a href="#">Graphic Design</a></li>
-            <li><a href="#">Web Design</a></li>
-            <li><a href="#">Web Development</a></li>
-          </ul>
-        </div>
-        <!-- End of .col-sm-3 -->
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                    <h3>帮助中心</h3>
+                    <ul>
+                        <li><a href="#">在线服务：个人/公司/信用卡</a></li>
+                        <li><a href="#">常见问题</a></li>
+                        <li><a href="#">网站地图</a></li>
+                    </ul>
+                </div>
+                <!-- End of .col-sm-3 -->
 
-        <div class="col-sm-3 col-md-3 col-lg-3">
-          <h3>Quick Links</h3>
-          <ul>
-            <li><a href="#">Partners</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">FAQ’s</a></li>
-            <li><a href="#">Badges</a></li>
-          </ul>
-        </div>
-        <!-- End of .col-sm-3 -->
-
-        <div class="col-sm-3 col-md-3 col-lg-3">
-          <h3>Follow Us</h3>
-          <ul>
-              <li>
-                  <a href="">
-                      Facebook
-                  </a>
-              </li>
-              <li>
-                  <a href="">
-                      Twitter
-                  </a>
-              </li>
-              <li>
-                  <a href="">
-                      Linkedin
-                  </a>
-              </li>
-              <li>
-                  <a href="">
-                      Google PLus
-                  </a>
-              </li>
-          </ul>
-        </div>
-        <!-- End of .col-sm-3 -->
-
-      </div>
-    </div> <!-- end container -->
-  </div>
-  <div class="footer-bottom">
-    <h5>Copyright 2017. All rights reserved.</h5> <h6>Design and Developed by Themefisher. More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></h6>
-  </div>
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                    <h3>关于中信</h3>
+                    <ul>
+                        <li><a href="#">投资者关系</a></li>
+                        <li><a href="#">公司治理</a></li>
+                        <li><a href="#">中信新闻</a></li>
+                        <li><a href="#">人才招聘</a></li>
+                    </ul>
+                </div>
+                <!-- End of .col-sm-3 -->
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                    <h3>分行专区</h3>
+                    <ul>
+                        <li><a href="#">分行机构</a></li>
+                        <li><a href="#">友情链接</a></li>
+                    </ul>
+                </div>
+                <!-- End of .col-sm-3 -->
+            </div>
+        </div> <!-- end container -->
+    </div>
+    <div class="footer-bottom">
+        <h5>中信银行股份有限公司版权所有 Copyright © CITIC Bank All rights reserved</h5> <h6>京公网安备11010502020433号 京ICP备16038101号</h6>
+    </div>
 </footer> <!-- end footer -->
 
 
@@ -235,10 +215,35 @@ Plotly.newPlot('myDiv', data);
     </script>
     <!-- Smooth Scroll js -->
     <script src="plugins/smooth-scroll/dist/js/smooth-scroll.min.js"></script>
-   
-    
     <!-- Custom js -->
     <script src="js/script.js"></script>
+    <script>
+function change()
+{
+   var x = document.getElementById("schooltype");
+   var y = document.getElementById("schoolname");
+   y.options.length = 0; // 清除second下拉框的所有内容
+   if(x.selectedIndex == 0)
+   {
+		y.options.add(new Option("春熙幼儿园", "0"));
+		y.options.add(new Option("阳光幼儿园", "1", false, true));  // 默认选中省会城市
+   }
+
+   if(x.selectedIndex == 1)
+   {
+		y.options.add(new Option("阳光小学", "0", false, true));
+   }
+    if(x.selectedIndex == 2)
+   {
+	    y.options.add(new Option("阳光中学", "0", false, true));
+   }
+    if(x.selectedIndex == 3)
+   {
+		y.options.add(new Option("阳光大学", "0", false, true));
+   }
+
+}
+    </script>
 
   </body>
   </html>

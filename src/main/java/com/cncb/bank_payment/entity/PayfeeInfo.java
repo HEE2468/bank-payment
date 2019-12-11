@@ -11,6 +11,7 @@ public class PayfeeInfo {
     private String user_id;
     private String payfee;
     private String payfee_date;
+    private String student_id;
 
     public String getPayfee_id() {
         return payfee_id;

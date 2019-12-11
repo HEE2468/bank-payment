@@ -6,6 +6,45 @@
     <title>Title</title>
 </head>
 <body>
+<section class="header  navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <nav class="navbar navbar-expand-md">
+                    <a class="navbar-brand" href="index.html">
+                        <img src="images/logo1.png" alt="" width="150px">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="tf-ion-android-menu"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="index.html">首页 <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="pricing.html">生活缴费</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="faq.html">教育培训</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="contact.html">社会保障</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="login.html">登录</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="signup.html">注册</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+
+            </div>
+        </div>
+    </div>
+</section>
 <form class="layui-form" action="">
     <div class="layui-form-item">
         <label class="layui-form-label">用户名</label>
@@ -54,6 +93,7 @@
                 error: function (res) {
                     layer.alert("出错了，请与管理员联系", {icon: 2});
                 },
+
                 success: function (res) {
                     console.log(res);
                     if (res === "OK") {

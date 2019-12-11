@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Layui</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <! -- bootstrap.min css -->
+    <link rel="stylesheet" href="plugins/bootstrap/dist/css/bootstrap.min.css">
+    <!-- Slick Carousel -->
+    <link rel="stylesheet" href="plugins/slick-carousel/slick/slick.css">
+    <link rel="stylesheet" href="plugins/slick-carousel/slick/slick-theme.css">
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+    <link href="layui/css/layui.css" rel="stylesheet"/>
+    <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
+</head>
+<body>
+<section class="header  navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <nav class="navbar navbar-expand-md">
+                    <a class="navbar-brand" href="index.html">
+                        <img src="images/logo1.png" alt="" width="150px">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="tf-ion-android-menu"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="index.html">首页 <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="pricing.html">生活缴费</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="faq.html">教育培训</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="contact.html">社会保障</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="login.html">登录</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="signup.html">注册</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+<div style="width: 80%; margin: 0 auto">
+    <h1 style="margin-top: 20px; margin-bottom: 20px" align="center">助学贷款申请</h1>
+    <p style="font-size: 18px; color: #333333; font-weight: bold">贷款申请项目</p>
+    <table class="layui-hide" id="test"></table>
+    <p style="font-size: 18px; color: #333333; font-weight: bold; margin-top: 50px">贷款申请状态</p>
+    <div class="layui-row" style="margin-top: 20px">
+        <div class="layui-row">
+            <div class="layui-col-sm3">
+                <div class="grid-demo grid-demo-bg1" style="margin-left: 50%;font-size: 16px">资料提供成功</div>
+            </div>
+            <div class="layui-col-sm3">
+                <div class="grid-demo" style="margin-left: 50%;font-size: 16px">审核中</div>
+            </div>
+            <div class="layui-col-sm3">
+                <div class="grid-demo grid-demo-bg1" style="margin-left: 50%;font-size: 16px">审核成功</div>
+            </div>
+            <div class="layui-col-sm3">
+                <div class="grid-demo" style="margin-left: 50%;font-size: 16px">已缴纳</div>
+            </div>
+        </div>
+    </div>
+    <div class="layui-progress layui-progress-big" lay-filter="demo" style="margin-top: 5px">
+        <div class="layui-progress-bar layui-bg-blue"></div>
+    </div>
+    <div style="margin-top: 20px">
+        <p style="margin-left: 30%; font-size: 18px; color: #333333">需提供以下资料，已word或pdf的方式进行提交：</p>
+        <p style="margin-left: 30%; margin-top: 5px">1.身份证</p>
+        <p style="margin-left: 30%;">2.户口本</p>
+        <p style="margin-left: 30%;">3.银行流水，打印半年到一年的</p>
+        <p style="margin-left: 30%;">4.个人征信，人民银行凭身份证可打印，也可以在网平台打印</p>
+        <p style="margin-left: 30%;">5.经营及贷款用途的相关资料，如购销合同、购买凭证、装修合同等</p>
+        <p style="margin-left: 30%;">6.资产证明，比如房产证复印件、汽车行驶证等，这个仅作为个人资产的证明，以及资产负债率的计算</p>
+        <p style="margin-left: 30%;">7.抵押，质押物，信用保证不需要提供</p>
+        <p style="margin-left: 30%;">8.以及银行认为你需要提供的其他资料</p>
+    </div>
+    <div class="layui-row layui-col-space1" style="margin-top: 40px">
+        <div class="layui-col-md3"></div>
+        <div class="layui-col-md3">
+            <button id="test3" type="button" class="layui-btn layui-btn-lg" style="margin-left: 50%; background: #D70010">提交文件</button>
+        </div>
+        <div class="layui-col-md3">
+            <button type="button" class="layui-btn layui-btn-primary layui-btn-lg" style="border-color:#D70010; color: #D70010"><a href="schoolPayment.html" style="color: #D70010">返回</a></button>
+        </div>
+        <div class="layui-col-md3"></div>
+    </div>
+</div>
+<script src="js/jquery/jquery.min.js"></script>
+<script src="layui/layui.js"></script>
+<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+<script>
+    layui.use('upload', function(){
+        var $ = layui.jquery, upload = layui.upload;
+
+        //指定允许上传的文件类型
+        upload.render({
+            elem: '#test3'
+            ,url: 'loan/loanUpload'
+            ,acceptMime: 'application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+            ,done: function(res){
+                console.log(res)
+            }
+        });
+    });
+
+
+    //注意进度条依赖 element 模块，否则无法进行正常渲染和功能性操作
+    layui.use('element', function () {
+        var element = layui.element;
+        element.progress('demo', '75%');
+    });
+    layui.use('table', function(){
+        var table = layui.table;
+
+        table.render({
+            elem: '#test'
+            ,url:'/demo/table/user/'
+            ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+            ,cols: [[
+                {field:'payfeedate', title: '学年', unresize: true}
+                ,{field:'loan_name', title: '收费名称', unresize: true}
+                ,{field:'payfee', title: '贷款金额', unresize: true}
+                ,{field:'applicateTime', title: '申请时间', unresize: true}
+            ]]
+        });
+    });
+</script>
+</body>
+</html>

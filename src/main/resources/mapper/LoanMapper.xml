@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cncb.bank_payment.dao.LoanDao">
+    <resultMap id="LoanMap" type="com.cncb.bank_payment.entity.Loan">
+        <id column="id" property="id" jdbcType="VARCHAR" />
+        <result column="student_sno" property="studentSno" jdbcType="VARCHAR" />
+        <result column="account_id" property="accountId" jdbcType="VARCHAR" />
+        <result column="applicate_file" property="applicateFile" jdbcType="VARCHAR" />
+        <result column="applicate_time" property="applicateTime" jdbcType="TIMESTAMP" />
+        <result column="loan_amount" property="loanAmount" jdbcType="FLOAT" />
+        <result column="loan_name" property="loanName" jdbcType="VARCHAR" />
+        <result column="status" property="status" jdbcType="INTEGER" />
+    </resultMap>
+	<resultMap id="PayfeeMap" type="com.cncb.bank_payment.entity.PayfeeInfo">
+		<id column="payfee_id" property="payfee_id" jdbcType="VARCHAR" />
+		<result column="user_id" property="user_id" jdbcType="VARCHAR" />
+		<result column="payfee" property="payfee" jdbcType="FLOAT" />
+		<result column="payfee_date" property="payfee_date" jdbcType="TIMESTAMP" />
+		<result column="student_id" property="student_id" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<select id="getPayfeeFromid" resultMap="PayfeeMap">
+		SELECT
+			payfee_info.payfee_id,
+			payfee_info.user_id,
+			payfee_info.payfee,
+			payfee_info.payfee_date,
+			payfee_info.student_id
+		FROM
+			payfee_info
+		WHERE
+			payfee_info.payfee_id = #{payfeeId}
+    </select>
+
+    <select id="getLoanFromAccountId" resultMap="LoanMap">
+		SELECT
+			loan.id,
+			loan.student_sno,
+			loan.account_id,
+			loan.applicate_file,
+			loan.applicate_time,
+			loan.loan_amount,
+			loan.loan_name,
+			loan.payfee_id,
+			loan.status
+		FROM
+			loan
+		WHERE
+			loan.payfee_id = #{payfeeId}
+    </select>
+
+    <insert id="addLoan" parameterType="com.cncb.bank_payment.entity.Loan">
+        INSERT INTO loan
+        VALUES
+	    (#{id, jdbcType=VARCHAR},
+	    #{studentSno, jdbcType=VARCHAR},
+	    #{accountId, jdbcType=VARCHAR},
+	    #{applicateFile, jdbcType=VARCHAR},
+	    #{applicateTime, jdbcType=TIMESTAMP},
+	    #{loanAmount, jdbcType=VARCHAR},
+	    #{loanName, jdbcType=VARCHAR},
+	    #{status, jdbcType=INTEGER}
+    </insert>
+
+	<delete id="deleteLoan" parameterType="java.lang.String">
+		DELETE
+		FROM loan
+		WHERE id = #{id}
+	</delete>
+</mapper>
