@@ -11,7 +11,7 @@
             card_no,
             card_tel,
             card_name,
-            identity ,
+            idenity ,
             card_m,
             user_id
         </trim>
@@ -21,7 +21,7 @@
             #{card_no},
             #{card_tel},
             #{card_name},
-            #{identity},
+            #{idenity},
             #{card_m},
             #{user_id}
         </trim>

@@ -10,7 +10,7 @@ public class Account {
     private String account_tel;
     private String account_password;
     private String user_id;
-    private String identity;
+    private String idenity;
 
     public String getAccount_id() {
         return account_id;
@@ -44,11 +44,11 @@ public class Account {
         this.user_id = user_id;
     }
 
-    public String getIdentity() {
-        return identity;
+    public String getIdenity() {
+        return idenity;
     }
 
-    public void setIdentity(String identity) {
-        this.identity = identity;
+    public void setIdenity(String idenity) {
+        this.idenity = idenity;
     }
 }

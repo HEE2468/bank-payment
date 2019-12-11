@@ -14,7 +14,7 @@
             user_id,
             user_name,
             user_tel,
-            identity,
+            idenity,
             user_paw
         </trim>
         )
@@ -23,7 +23,7 @@
             #{user_id},
             #{user_name},
             #{user_tel},
-            #{identity},
+            #{idenity},
             #{user_paw}
         </trim>
         )

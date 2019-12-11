@@ -1,6 +1,7 @@
 package com.cncb.bank_payment.controller;
 
 import com.cncb.bank_payment.entity.Account;
+import com.cncb.bank_payment.entity.User;
 import com.cncb.bank_payment.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -24,8 +25,8 @@ public class AccountController {
 
     @RequestMapping("/insertAccount")
     @Transactional(rollbackFor = {Exception.class})
-    public String insertAccount(@RequestBody Account account){
-        if(accountService.insertAccount(account)==0){
+    public String insertAccount(@RequestBody User user){
+        if(accountService.insertAccount(user)==0){
             return "failure";
         }else{
             return "successful";
