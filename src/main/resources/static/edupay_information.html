@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> 
+<html class="no-js"> <!--<![endif]-->
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="description" content="Bingo One page parallax responsive HTML Template ">
+  
+  <meta name="author" content="">
+
+  <title>中信银行惠支付平台</title>
+
+<!-- Mobile Specific Meta
+  ================================================== -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <!-- Favicon -->
+  <link rel="shortcut icon" type="image/x-icon" href="img/favicon.png" />
+  
+  <!-- CSS
+  ================================================== -->
+  <!-- Themefisher Icon font -->
+  <link rel="stylesheet" href="plugins/themefisher-font.v-2/style.css">
+  <!-- bootstrap.min css -->
+  <link rel="stylesheet" href="plugins/bootstrap/dist/css/bootstrap.min.css">
+  <!-- Slick Carousel -->
+  <link rel="stylesheet" href="plugins/slick-carousel/slick/slick.css">
+  <link rel="stylesheet" href="plugins/slick-carousel/slick/slick-theme.css">
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+
+  
+
+</head>
+
+<body id="body">
+<!--
+Fixed Navigation
+==================================== -->
+<section class="header  navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <nav class="navbar navbar-expand-md">
+                    <a class="navbar-brand" href="index.html">
+                        <img src="images/logo1.png" alt="" width="150px">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="tf-ion-android-menu"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="index.html">首页 <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="lifepay.html">生活缴费</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="edupay.html">教育培训</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="insurancepay.html">保险医疗</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="login.html">登录</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="signup.html">注册</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Srart Contact Us
+		=========================================== -->		
+	<section class="contact-us section bg-gray" id="contact">
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div class="title text-center">
+						<h5>请输入相关信息</h5>
+					</div>
+				</div>
+			</div>
+            <div class="updown" align="center">
+                    <h6>学校类别：</h6>
+                    <select id="schooltype" onChange="change()">
+                        <option selected="selected">幼儿园</option>
+                        <option>小学</option>
+                        <option>中学</option>
+                        <option>大学</option>
+                    </select>
+            <p></p>
+                    <h6>学校名称：</h6>
+                    <select id="schoolname">
+                        <option>阳光小学</option>
+                        <option>春熙幼儿园</option>
+                        <option>阳光中学</option>
+                        <option>阳光大学</option>
+                        <option selected="selected">阳光幼儿园</option>
+                    </select>
+            </div>
+            <p></p>
+            <div class="row">
+				<!-- Contact Form -->
+				<div class="contact-form col-12 col-md-6  mx-auto" >
+					<form id="contact-form" method="post" action="payment.html" role="form">
+						<div class="form-group">
+							<input type="text" placeholder="请输入姓名" class="form-control" name="stdname" id="stdname">
+						</div>
+						<div class="form-group">
+							<input type="text" placeholder="请输入学号" class="form-control" name="stdnum" id="stdnum">
+						</div>
+                        <div id="cf-submit">
+                            <a href="edupay_payment.html" class="btn btn-main">确认</a>
+                        </div>
+                    </form>
+				</div>
+				<!-- ./End Contact Form -->
+			</div> <!-- end row -->
+			
+		</div> <!-- end container -->
+	</section> <!-- end section -->
+
+<footer id="footer" class="bg-one">
+    <div class="top-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                    <h3>联系我们</h3>
+                    <ul>
+                        <li><a href="#">营业网点</a></li>
+                        <li><a href="#">信用卡中心：4008895558</a></li>
+                        <li><a href="#">客户中心：95558</a></li>
+                    </ul>
+                </div>
+                <!-- End of .col-sm-3 -->
+
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                    <h3>帮助中心</h3>
+                    <ul>
+                        <li><a href="#">在线服务：个人/公司/信用卡</a></li>
+                        <li><a href="#">常见问题</a></li>
+                        <li><a href="#">网站地图</a></li>
+                    </ul>
+                </div>
+                <!-- End of .col-sm-3 -->
+
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                    <h3>关于中信</h3>
+                    <ul>
+                        <li><a href="#">投资者关系</a></li>
+                        <li><a href="#">公司治理</a></li>
+                        <li><a href="#">中信新闻</a></li>
+                        <li><a href="#">人才招聘</a></li>
+                    </ul>
+                </div>
+                <!-- End of .col-sm-3 -->
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                    <h3>分行专区</h3>
+                    <ul>
+                        <li><a href="#">分行机构</a></li>
+                        <li><a href="#">友情链接</a></li>
+                    </ul>
+                </div>
+                <!-- End of .col-sm-3 -->
+            </div>
+        </div> <!-- end container -->
+    </div>
+    <div class="footer-bottom">
+        <h5>中信银行股份有限公司版权所有 Copyright © CITIC Bank All rights reserved</h5> <h6>京公网安备11010502020433号 京ICP备16038101号</h6>
+    </div>
+</footer> <!-- end footer -->
+
+
+    <!-- end Footer Area
+    ========================================== -->
+
+
+    
+    <!-- 
+    Essential Scripts
+    =====================================-->
+    
+    <!-- Main jQuery -->
+    <script src="plugins/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap 3.7 -->
+    <script src="plugins/bootstrap/dist/js/popper.min.js"></script>
+    <script src="plugins/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- Owl Carousel -->
+    <script src="plugins/slick-carousel/slick/slick.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script>
+        var trace1 = {
+  x: [1, 2, 3, 4], 
+  y: [10, 15, 13, 17], 
+  type: 'scatter'
+};
+var trace2 = {
+  x: [1, 2, 3, 4], 
+  y: [16, 5, 11, 9], 
+  type: 'scatter'
+};
+var data = [trace1, trace2];
+Plotly.newPlot('myDiv', data);
+    </script>
+    <!-- Smooth Scroll js -->
+    <script src="plugins/smooth-scroll/dist/js/smooth-scroll.min.js"></script>
+    <!-- Custom js -->
+    <script src="js/script.js"></script>
+    <script>
+function change()
+{
+   var x = document.getElementById("schooltype");
+   var y = document.getElementById("schoolname");
+   y.options.length = 0; // 清除second下拉框的所有内容
+   if(x.selectedIndex == 0)
+   {
+		y.options.add(new Option("春熙幼儿园", "0"));
+		y.options.add(new Option("阳光幼儿园", "1", false, true));  // 默认选中省会城市
+   }
+
+   if(x.selectedIndex == 1)
+   {
+		y.options.add(new Option("阳光小学", "0", false, true));
+   }
+    if(x.selectedIndex == 2)
+   {
+	    y.options.add(new Option("阳光中学", "0", false, true));
+   }
+    if(x.selectedIndex == 3)
+   {
+		y.options.add(new Option("阳光大学", "0", false, true));
+   }
+
+}
+    </script>
+
+  </body>
+  </html>
