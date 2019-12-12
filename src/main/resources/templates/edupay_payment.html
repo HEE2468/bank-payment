@@ -96,17 +96,18 @@ Fixed Navigation
             <div class="contact-form col-12 col-md-6  mx-auto" >
                 <form id="contact-form" method="post" action="sendmail.php" role="form">
                     <div class="updown" align="center">
-                        <h6>请选择支付银行卡</h6>
-                        <select id="bankcard" onChange="change()">
-                            <option selected="selected">-请选择-</option>
-                        </select>
+                        <h6>请选择支付银行卡
+                            <select name="select" id="bankcard" onChange="change()" style="width: 400px">
+                                <option selected="selected">请选择</option>
+                            </select>
+                        </h6>
                         <p></p>
                     </div>
                     <div class="form-group">
                         <input type="text" placeholder="支付密码" class="form-control" name="paypassword" id="paypassword">
                     </div>
                     <div id="cf-submit">
-                        <a href="index.html" class="btn btn-main">确认</a>
+                        <a href="edupay.html" class="btn btn-main">确认</a>
                     </div>
                 </form>
             </div>
