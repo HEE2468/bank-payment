@@ -21,6 +21,6 @@ public interface StudentsDao {
      * @date: 2019/12/11
      * @return: java.lang.String
      */
-    Students findStudent(InputParameter parameter);
+    String findStudent(String stdname, String stdnum, String schoolnamer);
 
 }

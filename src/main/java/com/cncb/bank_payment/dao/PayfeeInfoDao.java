@@ -24,7 +24,7 @@ public interface PayfeeInfoDao {
 
     List<Card> getCard(String accountId);
 
-    Card getCardFromId(String cardNo);
+    Card getCardFromId(String cardId);
 
     void updateM(Float card_m, String card_id);
 

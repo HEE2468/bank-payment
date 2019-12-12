@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>中信银行惠支付平台</title>
+    <title>layout 后台大布局 - Layui</title>
     <! -- bootstrap.min css -->
     <link rel="stylesheet" href="plugins/bootstrap/dist/css/bootstrap.min.css">
     <!-- Slick Carousel -->
@@ -12,8 +12,10 @@
     <!-- Main Stylesheet -->
     <link rel="stylesheet" href="css/style.css">
     <link href="layui/css/layui.css" rel="stylesheet"/>
+    <link href="css/theme.css" rel="stylesheet"/>
 </head>
-<body class="layui-layout-body">
+<body>
+
 <section class="header  navigation">
     <div class="container">
         <div class="row">
@@ -22,7 +24,10 @@
                     <a class="navbar-brand" href="index.html">
                         <img src="images/logo1.png" alt="" width="150px">
                     </a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                            data-target="#navbarSupportedContent"
+                            aria-controls="navbarSupportedContent" aria-expanded="false"
+                            aria-label="Toggle navigation">
                         <span class="tf-ion-android-menu"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -31,38 +36,37 @@
                                 <a class="nav-link" href="index.html">首页 <span class="sr-only">(current)</span></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="lifepay.html">生活缴费</a>
+                                <a class="nav-link" href="pricing.html">生活缴费</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="edupay.html">教育培训</a>
+                                <a class="nav-link" href="faq.html">教育培训</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="insurancepay.html">社会医疗</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="user.html">我的</a>
+                                <a class="nav-link" href="contact.html">社会保障</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="login.html">登录</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="signup.html">注册</a>
+                            </li>
                         </ul>
                     </div>
                 </nav>
-
             </div>
         </div>
     </div>
 </section>
 <div style="width: 70%; margin: 0 auto">
-    <a href="payment_iframe.html">
-        <button type="button" class="layui-btn layui-btn-lg" style="margin:20px 0 10px 84%; background: #D70010">缴纳费用</button>
-    </a>
-    <table class="layui-hide" id="test"></table>
-    <p style="color: #D70010; float: right; font-size: 20px">费用总额：0</p>
+    <button id="payment" type="button" class="layui-btn layui-btn-lg"
+            style="margin:20px 0 10px 89%; background: #D70010;">缴纳费用
+    </button>
+    <table class="layui-hide" id="test" lay-filter="test"></table>
+    <p id="payfee" style="color: #D70010; float: right; font-size: 20px">费用总额：0元</p>
 </div>
 
 <script type="text/html" id="barDemo">
-    <a href="edupay_loanAppli.html" class="layui-btn layui-btn-xs" lay-event="edit" style="background: #FFFFFF00;color: #CC0000">申请助学贷款</a>
+    <a class="layui-btn layui-btn-xs" lay-event="edit" style="background: #FFFFFF00;color: #CC0000">申请助学贷款</a>
 </script>
 
 <script src="js/jquery/jquery.min.js"></script>
@@ -76,7 +80,6 @@
     var map = new Map();
     var studentId = "";
     $(function(){
-        parent.layer.iframeAuto(parent.layer.getFrameIndex(window.name));
         var url = location.search; //这一条语句获取了包括问号开始到参数的最后，不包括前面的路径
         console.log(url);
         var params = url.substr(1);//去掉问号
@@ -92,7 +95,7 @@
 
         table.render({
             elem: '#test'
-            , url: 'payfee/getPayfee?studentId=106144062017040601'
+            , url: 'payfee/getPayfee?studentId=' + studentId
             , method: 'get'
             , toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
             , defaultToolbar: ['exports', 'print']
@@ -197,7 +200,7 @@
             if (data.needPay - data.alreadyPay === 0) {
                 layer.alert("已付清，不需要申请助学贷款", {icon: 2});
             } else {
-                window.location.href = 'loanApplication.html?payfee_id=' + data.payfee_id;
+                window.location.href = 'edupay_loanApplicate.html?payfee_id=' + data.payfee_id;
             }
         });
     });
@@ -222,7 +225,7 @@
                                 title: '新增',
                                 shadeClose: true,
                                 area: ['500px', '550px'],
-                                content: 'payment_iframe.html?payfee=' + tempPayfee + '&payfeeIds' + payfeeIds + '&studentId' + studentId,
+                                content: 'payment_iframe.html?payfe=' + tempPayfee + '&payfeeId=' + payfeeIds + '&studentId=' + studentId,
                                 end: function () {
                                     //layer.tips('Hi', '#about', {tips: 1})
                                 }

@@ -37,13 +37,16 @@
             payfee_info.payfee_id,
             payfee_info.payfee needPay,
             check_record.payfee alreadyPay,
-	        loan.id isLoan
+            check_record.record_date,
+            loan.id isLoan
         FROM
             payfee_info
-        LEFT JOIN check_record ON check_record.payfee_id = payfee_info.payfee_id AND check_record.check_status = "success"
+        LEFT JOIN check_record ON check_record.payfee_id = payfee_info.payfee_id
+        AND check_record.check_status = "success"
         LEFT JOIN loan ON loan.payfee_id = payfee_info.payfee_id
         WHERE
             payfee_info.student_id = #{studentId}
+        ORDER BY check_record.record_date DESC
     </select>
 
     <select id="getCard" resultMap="CardMap">
@@ -75,7 +78,7 @@
         FROM
             card
         WHERE
-            card.card_no = #{cardNo}
+            card.card_id = #{cardId}
     </select>
 
     <insert id="addCheckRecord">
@@ -84,10 +87,11 @@
 	    (#{check_id, jdbcType=VARCHAR},
 	    #{record_date, jdbcType=TIMESTAMP},
 	    #{card_id, jdbcType=VARCHAR},
-	    #{bank_flow, jdbcType=VARCHAR},
+	    #{card_flow, jdbcType=VARCHAR},
 	    #{user_id, jdbcType=VARCHAR},
+	    #{payfee_id, jdbcType=VARCHAR},
 	    #{payfee, jdbcType=FLOAT},
-	    #{check_status, jdbcType=VARCHAR}
+	    #{check_status, jdbcType=VARCHAR})
 	</insert>
 
     <!-- 修改卡中金额操作 -->

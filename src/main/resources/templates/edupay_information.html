@@ -1,7 +1,10 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]><html class="no-js lt-ie9"> <![endif]-->
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!-->
 <html class="no-js"> <!--<![endif]-->
 <head>
@@ -119,7 +122,9 @@ Fixed Navigation
                                id="stdnum">
                     </div>
                     <div id="cf-submit">
-                        <a href="edupay_payinfo.html" class="btn btn-main">确认</a>
+                        <button id="enter" type="button" class="btn btn-main"
+                                style="margin:20px 0 10px 89%; background: #D70010;">确认信息，进入缴费
+                        </button>
                     </div>
                 </form>
             </div>
@@ -201,43 +206,62 @@ Essential Scripts
 <!-- Custom js -->
 <script src="js/script.js"></script>
 <script>
-function change()
-{
-   var x = document.getElementById("schooltype");
-   var y = document.getElementById("schoolname");
-   y.options.length = 0; // 清除second下拉框的所有内容
-   if(x.selectedIndex == 0)
-   {
-		y.options.add(new Option("请选择", "0"));
-   }
-   if(x.selectedIndex == 1)
-   {
-		y.options.add(new Option("大风车幼儿园", "0"));
-		y.options.add(new Option("达州市金兰幼稚园", "0"));
-		y.options.add(new Option("皇家幼儿园", "0"));
-   }
+    function change() {
+        var x = document.getElementById("schooltype");
+        var y = document.getElementById("schoolname");
+        y.options.length = 0; // 清除second下拉框的所有内容
+        if (x.selectedIndex == 0) {
+            y.options.add(new Option("请选择", "0"));
+        }
+        if (x.selectedIndex == 1) {
+            y.options.add(new Option("大风车幼儿园", "大风车幼儿园"));
+            y.options.add(new Option("达州市金兰幼稚园", "达州市金兰幼稚园"));
+            y.options.add(new Option("皇家幼儿园", "皇家幼儿园"));
+        }
 
-   if(x.selectedIndex == 2)
-   {
-		y.options.add(new Option("成都市华兴小学", "0"));
-		y.options.add(new Option("成都市盐道街小学", "0"));
-		y.options.add(new Option("成都成华实验小学", "0"))
-   }
-    if(x.selectedIndex == 3)
-   {
-	   	y.options.add(new Option("成都市树德实验中学", "0"));
-		y.options.add(new Option("北京师范大学成都实验中学", "0"));
-		y.options.add(new Option("绵阳五中", "0"))
-   }
-    if(x.selectedIndex == 4)
-   {
-		y.options.add(new Option("西南财经大学", "0"));
-		y.options.add(new Option("电子科技大学", "0"));
-		y.options.add(new Option("四川大学", "0"))
-   }
+        if (x.selectedIndex == 2) {
+            y.options.add(new Option("成都市华兴小学", "成都市华兴小学"));
+            y.options.add(new Option("成都市盐道街小学", "成都市盐道街小学"));
+            y.options.add(new Option("成都成华实验小学", "成都成华实验小学"))
+        }
+        if (x.selectedIndex == 3) {
+            y.options.add(new Option("成都市树德实验中学", "成都市树德实验中学"));
+            y.options.add(new Option("北京师范大学成都实验中学", "北京师范大学成都实验中学"));
+            y.options.add(new Option("绵阳五中", "绵阳五中"))
+        }
+        if (x.selectedIndex == 4) {
+            y.options.add(new Option("西南石油大学", "西南石油大学"));
+            y.options.add(new Option("电子科技大学", "电子科技大学"));
+            y.options.add(new Option("四川大学", "四川大学"))
+        }
+    }
 
-}
-    </script>
+    $("#enter").click(function () {
+        $.ajax({
+            url: "student/findStudent",
+            dataType: "json",
+            type:"post",
+            data : {
+                stdname : $("#stdname").val(),
+                stdnum : $("#stdnum").val(),
+                schoolname : $("#schoolname option:selected").val(),
+            },
+            error: function (res) {
+                console.log(res);
+                alert("无此学生，请检查信息");
+            },
+            success: function (res) {
+                console.log(res);
+                if (res === "FAIL") {
+                    alert("无此学生，请检查信息");
+                } else {
+                    window.location.href = 'edupay_payinfo.html?studentId=' + res;
+                }
+            }
+        });
+
+    });
+</script>
 
 </body>
 </html>
