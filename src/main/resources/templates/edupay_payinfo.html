@@ -79,13 +79,13 @@
     var payfeeIds = "";
     var map = new Map();
     var studentId = "";
-    $(function(){
+    $(function () {
         var url = location.search; //这一条语句获取了包括问号开始到参数的最后，不包括前面的路径
         console.log(url);
         var params = url.substr(1);//去掉问号
         var pa = params.split("&");
         var s = {};
-        for(var i = 0; i < pa.length; i ++){
+        for (var i = 0; i < pa.length; i++) {
             s[pa[i].split("=")[0]] = unescape(pa[i].split("=")[1]);
         }
         studentId = s.studentId + "";
@@ -150,12 +150,14 @@
                     payfeeIds = "";
                     tempPayfee = 0;
                     for (let i = 0; i < dataAll.length; i++) {
-                        if (dataAll[i].alreadyPay === undefined) {
-                            tempPayfee = accAdd(tempPayfee, accSub(dataAll[i].needPay, 0));
-                        } else {
-                            tempPayfee = accAdd(tempPayfee, accSub(dataAll[i].needPay, dataAll[i].alreadyPay));
+                        if (dataAll[i].isLoan === undefined) {
+                            if (dataAll[i].alreadyPay === undefined) {
+                                tempPayfee = accAdd(tempPayfee, accSub(dataAll[i].needPay, 0));
+                            } else {
+                                tempPayfee = accAdd(tempPayfee, accSub(dataAll[i].needPay, dataAll[i].alreadyPay));
+                            }
+                            payfeeIds = payfeeIds + dataAll[i].payfee_id + ",";
                         }
-                        payfeeIds = payfeeIds + dataAll[i].payfee_id + ",";
                     }
                     var reg = /,$/gi;
                     payfeeIds = payfeeIds.replace(reg, "");
@@ -167,18 +169,26 @@
                 }
             } else {
                 if (obj.checked === true) {
-                    if (obj.data.alreadyPay === undefined) {
-                        tempPayfee = accAdd(tempPayfee, accSub(obj.data.needPay, 0));
+                    if (obj.data.isLoan !== undefined) {
+
                     } else {
-                        tempPayfee = accAdd(tempPayfee, accSub(obj.data.needPay, obj.data.alreadyPay));
+                        if (obj.data.alreadyPay === undefined) {
+                            tempPayfee = accAdd(tempPayfee, accSub(obj.data.needPay, 0));
+                        } else {
+                            tempPayfee = accAdd(tempPayfee, accSub(obj.data.needPay, obj.data.alreadyPay));
+                        }
+                        map.set(obj.data.payfee_id, obj.data.payfee_id);
+                        document.getElementById("payfee").innerHTML = "费用总额：" + tempPayfee + "元";
                     }
-                    map.set(obj.data.payfee_id, obj.data.payfee_id);
-                    document.getElementById("payfee").innerHTML = "费用总额：" + tempPayfee + "元";
                 } else {
-                    if (obj.data.alreadyPay === undefined) {
-                        tempPayfee = accSub(tempPayfee, accSub(obj.data.needPay, 0));
+                    if (obj.data.isLoan !== undefined) {
+
                     } else {
-                        tempPayfee = accSub(tempPayfee, accSub(obj.data.needPay, obj.data.alreadyPay));
+                        if (obj.data.alreadyPay === undefined) {
+                            tempPayfee = accSub(tempPayfee, accSub(obj.data.needPay, 0));
+                        } else {
+                            tempPayfee = accSub(tempPayfee, accSub(obj.data.needPay, obj.data.alreadyPay));
+                        }
                     }
                     map.delete(obj.data.payfee_id);
                     document.getElementById("payfee").innerHTML = "费用总额：" + tempPayfee + "元";

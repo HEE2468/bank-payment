@@ -48,7 +48,7 @@ public class LoanController {
 
         if (file.isEmpty()) {
             // "上传失败，请选择文件";
-            return "FAIL";
+            return JacksonUtil.objectToJson("FAIL");
         }
         String fileName = file.getOriginalFilename();  // 文件名
         String filePath = "D://LoanApplicate//"; // 上传后的路径
@@ -69,7 +69,7 @@ public class LoanController {
                 return JacksonUtil.objectToJson("FAIL");
             }
         } else {
-            return "FAIL";
+            return JacksonUtil.objectToJson("FAIL");
         }
     }
 

@@ -95,14 +95,13 @@
         <p style="margin-left: 30%;">4.个人征信，人民银行凭身份证可打印，也可以在网平台打印</p>
         <p style="margin-left: 30%;">5.经营及贷款用途的相关资料，如购销合同、购买凭证、装修合同等</p>
         <p style="margin-left: 30%;">6.资产证明，比如房产证复印件、汽车行驶证等，这个仅作为个人资产的证明，以及资产负债率的计算</p>
-        <p style="margin-left: 30%;">7.抵押，质押物，信用保证不需要提供</p>
-        <p style="margin-left: 30%;">8.以及银行认为你需要提供的其他资料</p>
+        <p style="margin-left: 30%;">7.以及银行认为你需要提供的其他资料</p>
     </div>
     <div class="layui-row layui-col-space1" style="margin-top: 40px">
         <div class="layui-col-md3"></div>
         <div class="layui-col-md3">
             <button id="test3" type="button" class="layui-btn layui-btn-lg"
-                    style="margin-left: 50%; background: #D70010">提交文件
+                    style="margin-left: 30%; background: #D70010">提交文件
             </button>
         </div>
         <div class="layui-col-md3">
@@ -152,14 +151,19 @@
                     payfeee = ress[0].payfee;
                     if (ress[0].status === undefined)
                         element.progress('demo', '0%');
-                    else if (ress[0].status === 1)
+                    else if (ress[0].status === 1) {
                         element.progress('demo', '25%');
-                    else if (ress[0].status === 2)
-                        element.progress('demo', '55%');
-                    else if (ress[0].status === 3)
+                        $("#test3").attr("disabled", true);
+                    } else if (ress[0].status === 2) {
+                        element.progress('demo', '50%');
+                        $("#test3").attr("disabled", true);
+                    } else if (ress[0].status === 3) {
                         element.progress('demo', '75%');
-                    else
+                        $("#test3").attr("disabled", true);
+                    } else {
                         element.progress('demo', '100%');
+                        $("#test3").attr("disabled", true);
+                    }
                 });
                 return {
                     "code": 0,
@@ -176,27 +180,43 @@
                     }
                 }
                 , {field: 'payfee', title: '贷款金额', unresize: true}
-                , {field: 'applicate_time', title: '申请时间', unresize: true}
+                , {
+                    field: 'applicate_time',
+                    title: '申请时间',
+                    unresize: true,
+                    templet: function (row) {
+                        var time = new Date(row.applicate_time);
+                        var day = time.getDate();
+                        if (time.getDate() < 10)
+                            day = "0" + time.getDate();
+                        return time.getFullYear() + "-" + (time.getMonth() + 1) + "-" + day;
+                    }
+                }
             ]]
         });
+    });
 
-        layui.use('upload', function () {
-            var $ = layui.jquery, upload = layui.upload;
+    layui.use('upload', function () {
+        var $ = layui.jquery, upload = layui.upload;
 
-            //指定允许上传的文件类型
-            upload.render({
-                elem: '#test3'
-                ,
-                url: 'loan/loanUpload?studentSno=' + studentId + '&loanAmount=' + payfeee
-                ,
-                accept: 'file'
-                ,
-                acceptMime: 'application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document'
-                ,
-                done: function (res) {
-                    window.location.href = 'edupay_loanApplicate.html?payfee_id=' + payfeeId + '&studentId=' + studentId;
-                }
-            });
+        //指定允许上传的文件类型
+        upload.render({
+            elem: '#test3'
+            ,
+            url: 'loan/loanUpload'
+            ,
+            accept: 'file'
+            ,
+            acceptMime: 'application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+            ,
+            before: function (obj) {
+                layer.load(); //上传loading
+                this.data = {'studentSno': studentId, "loanAmount": payfeee, "payfee_id": payfeeId};
+            }
+            ,
+            done: function (res) {
+                window.location.href = 'edupay_loanApplicate.html?payfee_id=' + payfeeId + '&studentId=' + studentId;
+            }
         });
     });
 </script>
