@@ -18,7 +18,7 @@ public interface PayfeeInfoService {
 
     List<Card> getCard(String accountId);
 
-    String addCheckRecord(String card_id, String bank_flow, String user_id, Float payfee);
-
     String getCardFromId(Float money, String cardNo, String cardPassword);
+
+    String payment(Float payfee, String payfeeIds, String cardIds, String cardPassword, String accountId);
 }

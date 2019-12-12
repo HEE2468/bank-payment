@@ -10,6 +10,7 @@ import com.cncb.bank_payment.utils.EntityIDFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
@@ -38,19 +39,6 @@ public class PayfeeInfoServiceImpl implements PayfeeInfoService {
     }
 
     @Override
-    public String addCheckRecord(String card_id, String bank_flow, String user_id, Float payfee) {
-        String check_id = EntityIDFactory.createId();
-        CheckRecord checkRecord = new CheckRecord(check_id, new Timestamp(new Date().getTime()), card_id, bank_flow, user_id, payfee, "success");
-        try {
-            payfeeInfoDao.addCheckRecord(checkRecord);
-            return "SUCCESS";
-        } catch (Exception e) {
-            System.out.println(e);
-            return "FAIL";
-        }
-    }
-
-    @Override
     public String getCardFromId(Float money, String cardNo, String cardPassword) {
         Card card = payfeeInfoDao.getCardFromId(cardNo);
         if (card.getCard_password().equals(cardPassword)) {
@@ -59,5 +47,33 @@ public class PayfeeInfoServiceImpl implements PayfeeInfoService {
             }
         }
         return null;
+    }
+
+    @Override
+    public String payment(Float payfee, String payfeeIds, String cardIds, String cardPassword, String accountId) {
+        Card card = payfeeInfoDao.getCardFromId(cardIds);
+        if (!card.getCard_password().equals(cardPassword)) {
+            return "0";
+        } else {
+            if (payfee > card.getCard_m()) return "1";
+            else {
+                payfeeInfoDao.updateM(sub(card.getCard_m(), payfee), cardIds);
+                String[] payfeeIDs = payfeeIds.split(",");
+                for (int i = 0; i < payfeeIDs.length; i++) {
+                    Float payfeeM = payfeeInfoDao.getMFromId(payfeeIDs[i]);
+                    String id = EntityIDFactory.createId();
+                    CheckRecord checkRecord = new CheckRecord(id, new Timestamp(new Date().getTime()), cardIds, id, accountId, payfeeIDs[i], payfeeM, "success");
+                    payfeeInfoDao.addCheckRecord(checkRecord);
+                }
+                return "2";
+            }
+        }
+    }
+
+    public static float sub(float v1, float v2) {
+        BigDecimal b1 = new BigDecimal(Float.toString(v1));
+        BigDecimal b2 = new BigDecimal(Float.toString(v2));
+        return b1.subtract(b2).floatValue();
+
     }
 }

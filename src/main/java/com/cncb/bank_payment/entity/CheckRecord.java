@@ -12,17 +12,19 @@ public class CheckRecord {
     private String check_id;
     private Timestamp record_date;
     private String card_id;
-    private String bank_flow;
+    private String card_flow;
     private String user_id;
+    private String payfee_id;
     private Float payfee;
     private String check_status;
 
-    public CheckRecord(String check_id, Timestamp record_date, String card_id, String bank_flow, String user_id, Float payfee, String check_status) {
+    public CheckRecord(String check_id, Timestamp record_date, String card_id, String card_flow, String user_id, String payfee_id, Float payfee, String check_status) {
         this.check_id = check_id;
         this.record_date = record_date;
         this.card_id = card_id;
-        this.bank_flow = bank_flow;
+        this.card_flow = card_flow;
         this.user_id = user_id;
+        this.payfee_id = payfee_id;
         this.payfee = payfee;
         this.check_status = check_status;
     }
@@ -51,12 +53,12 @@ public class CheckRecord {
         this.card_id = card_id;
     }
 
-    public String getBank_flow() {
-        return bank_flow;
+    public String getCard_flow() {
+        return card_flow;
     }
 
-    public void setBank_flow(String bank_flow) {
-        this.bank_flow = bank_flow;
+    public void setCard_flow(String card_flow) {
+        this.card_flow = card_flow;
     }
 
     public String getUser_id() {
@@ -65,6 +67,14 @@ public class CheckRecord {
 
     public void setUser_id(String user_id) {
         this.user_id = user_id;
+    }
+
+    public String getPayfee_id() {
+        return payfee_id;
+    }
+
+    public void setPayfee_id(String payfee_id) {
+        this.payfee_id = payfee_id;
     }
 
     public Float getPayfee() {

@@ -16,7 +16,7 @@
     </select>
 
     <!-- 判断添加的卡是否存在 -->
-    <select id="isExistCard" parameterType="com.cncb.bank_payment.entity.Card">
+    <select id="isExistCard" parameterType="string" resultType="string">
           select card_id from card where card_no=#{card_no}
           and
           idenity=#{idenity}

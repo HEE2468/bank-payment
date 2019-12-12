@@ -17,7 +17,7 @@
     <div id="username" class="layui-form-item">
         <label class="layui-form-label">银行卡</label>
         <div class="layui-input-block">
-            <select id="employee_list" name="uempid" lay-verify="" lay-filter="employee_list">
+            <select id="employee_list" name="uempid" lay-verify="required" lay-filter="employee_list">
                 <option value="">请选择银行卡</option>
             </select>
         </div>
@@ -31,8 +31,7 @@
     </div>
     <div class="layui-form-item">
         <div class="layui-input-block">
-            <button class="layui-btn" lay-submit lay-filter="formDemo">提交</button>
-            <button class="layui-btn layui-btn-primary">取消</button>
+            <button class="layui-btn" lay-submit lay-filter="formDemo">确实缴纳</button>
         </div>
     </div>
 </form>
@@ -41,7 +40,8 @@
 <script src="layui/layui.js"></script>
 <script>
     var payfee;
-    var id;
+    var payfeeIds = "";
+    var studentId = "";
     $(function(){
         parent.layer.iframeAuto(parent.layer.getFrameIndex(window.name));
         var url = location.search; //这一条语句获取了包括问号开始到参数的最后，不包括前面的路径
@@ -53,10 +53,11 @@
             s[pa[i].split("=")[0]] = unescape(pa[i].split("=")[1]);
         }
         payfee = s.payfee + "";
-        id = s.accountId + "";
+        payfeeIds = s.payfeeIds + "";
+        studentId = s.studentId + "";
         $("#employee_name").attr('value', payfee + "元");
         $.ajax({
-            url: "payfee/getCard?accountId=" + id,
+            url: "payfee/getCard",
             type: "get",
             dataType: "json",
             error: function () {
@@ -78,10 +79,12 @@
         form.on('submit(formDemo)', function (data) {
             $.ajax({
                 type:"post",
-                url:"",
+                url:"payfee/payment",
                 data : {
-                    uempid : $("#employee_list option:selected").text(),
-                    uempname : data.field.uempname
+                    payfee : payfee,
+                    payfeeIds : payfeeIds,
+                    cardIds : $("#employee_list option:selected").val(),
+                    cardPassword : $("#card_password").val()
                 },
                 datatype: "json",
                 error: function(){
@@ -89,13 +92,16 @@
                     layer.alert('出错了，请与管理员联系！', {icon: 2});
                 },
                 success:function(res){
-                    if (res === "FAIL") {
-                        parent.layer.alert('新增失败', {icon: 2});
+                    if (res === "0") {
+                        parent.layer.alert('支付密码输入错误', {icon: 2});
+                        parent.layer.close(parent.layer.getFrameIndex(window.name));
+                    } else if (res === "1") {
+                        parent.layer.alert('账号余额不足', {icon: 2});
                         parent.layer.close(parent.layer.getFrameIndex(window.name));
                     } else {
-                        parent.layer.alert('新增成功', {icon: 1});
-                        parent.layui.table.reload('attendance_table', {
-                            url: '/pm/attendance/getAllAttendance'
+                        parent.layer.alert('支付成功', {icon: 1});
+                        parent.layui.table.reload('test', {
+                            url: 'payfee/getPayfee?studentId=' + studentId
                         });
                         parent.layer.close(parent.layer.getFrameIndex(window.name));
                     }

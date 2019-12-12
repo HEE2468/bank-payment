@@ -15,6 +15,8 @@ import java.util.Enumeration;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 /**
  * @author HEE
  * @date 2019/12/10
@@ -34,27 +36,17 @@ public class PayfeeInfoController {
     }
 
     @RequestMapping(value = "getCard", method = RequestMethod.GET)
-    public String getCard(String accountId) {
-        List<Card> cards = payfeeInfoService.getCard(accountId);
-        if (cards == null) {
+    public String getCard(HttpSession httpSession) {
+        List<Card> cards = payfeeInfoService.getCard((String) httpSession.getAttribute("userId"));
+        if (cards == null || cards.size() == 0) {
             return "FAIL";
         } else {
             return JacksonUtil.objectToJson(cards);
         }
     }
 
-//    @RequestMapping(value = "payment", method = RequestMethod.POST)
-//    public String payment(Float money, String cardNo, String cardPassword) {
-//        String result = payfeeInfoService.getCardFromId(money, cardNo, cardPassword);
-//        if (result == null) {
-//            return "FAIL";
-//        } else {
-//            return JacksonUtil.objectToJson(cards);
-//        }
-//    }
-
-    @RequestMapping(value = "addCheckRecord", method = RequestMethod.POST)
-    public String addCheckRecord(String card_id, String bank_flow, String user_id, Float payfee) {
-        return payfeeInfoService.addCheckRecord(card_id, bank_flow, user_id, payfee);
+    @RequestMapping(value = "payment", method = RequestMethod.POST)
+    public String payment(Float payfee, String payfeeIds, String cardIds, String cardPassword, HttpSession httpSession) {
+        return payfeeInfoService.payment(payfee, payfeeIds, cardIds, cardPassword, (String) httpSession.getAttribute("userId"));
     }
 }
