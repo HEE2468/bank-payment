@@ -64,6 +64,19 @@
 	    #{status, jdbcType=INTEGER}
     </insert>
 
+	<select id="getLoanFromPayfeeId" resultType="java.util.HashMap">
+		SELECT
+			payfee_info.payfee,
+			payfee_info.payfee_date,
+			loan.`status`,
+			loan.applicate_time
+		FROM
+			payfee_info
+		LEFT JOIN loan ON loan.payfee_id = #{payfeeId}
+		WHERE
+			payfee_info.payfee_id = #{payfeeId}
+    </select>
+
 	<delete id="deleteLoan" parameterType="java.lang.String">
 		DELETE
 		FROM loan

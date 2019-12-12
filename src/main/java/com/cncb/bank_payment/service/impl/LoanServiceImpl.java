@@ -22,8 +22,8 @@ public class LoanServiceImpl implements LoanService {
 
 
     @Override
-    public Loan getLoan(String payfeeId) {
-        Loan loan = loanDao.getLoanFromPayfeeId(payfeeId);
+    public Map<String, Object> getLoan(String payfeeId) {
+        Map<String, Object> loan = loanDao.getLoanFromPayfeeId(payfeeId);
         return loan;
     }
 

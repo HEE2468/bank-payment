@@ -14,9 +14,11 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -33,9 +35,11 @@ public class LoanController {
     LoanService loanService;
 
     @RequestMapping(value = "getLoan", method = RequestMethod.GET)
-    public String getLoan(String payfeeId) {
-        Loan loan = loanService.getLoan(payfeeId);
-        return JacksonUtil.objectToJson(loan);
+    public String getLoan(String payfee_id) {
+        Map<String, Object> loan = loanService.getLoan(payfee_id);
+        List<Map<String, Object>> result = new ArrayList<>();
+        result.add(loan);
+        return JacksonUtil.objectToJson(result);
     }
 
     @RequestMapping(value = "loanUpload", method = RequestMethod.POST)

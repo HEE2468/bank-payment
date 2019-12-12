@@ -200,7 +200,7 @@
             if (data.needPay - data.alreadyPay === 0) {
                 layer.alert("已付清，不需要申请助学贷款", {icon: 2});
             } else {
-                window.location.href = 'edupay_loanApplicate.html?payfee_id=' + data.payfee_id;
+                window.location.href = 'edupay_loanApplicate.html?payfee_id=' + data.payfee_id + '&studentId=' + studentId;
             }
         });
     });

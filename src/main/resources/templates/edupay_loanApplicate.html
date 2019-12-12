@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Layui</title>
+    <title>助学贷款申请</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -25,7 +25,10 @@
                     <a class="navbar-brand" href="index.html">
                         <img src="images/logo1.png" alt="" width="150px">
                     </a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                            data-target="#navbarSupportedContent"
+                            aria-controls="navbarSupportedContent" aria-expanded="false"
+                            aria-label="Toggle navigation">
                         <span class="tf-ion-android-menu"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -57,20 +60,24 @@
     </div>
 </section>
 <div style="width: 80%; margin: 0 auto">
-    <h1 style="color: #232323; margin-top: 20px; margin-bottom: 8px;font-size: 35px; font-weight: 700;text-transform: capitalize" align="center">助学贷款申请</h1>
+    <h1 style="color: #232323; margin-top: 20px; margin-bottom: 8px;font-size: 35px; font-weight: 700;text-transform: capitalize"
+        align="center">助学贷款申请</h1>
     <p style="font-size: 18px; color: #333333; font-weight: bold">贷款申请项目</p>
     <table class="layui-hide" id="test"></table>
     <p style="font-size: 18px; color: #333333; font-weight: bold; margin-top: 50px">贷款申请状态</p>
     <div class="layui-row" style="margin-top: 20px">
         <div class="layui-row">
             <div class="layui-col-sm3">
-                <div class="grid-demo grid-demo-bg1" style="margin-left: 50%;font-size: 16px">资料提供成功</div>
+                <div class="grid-demo grid-demo-bg1" style="margin-left: 50%;font-size: 16px">
+                    资料提供成功
+                </div>
             </div>
             <div class="layui-col-sm3">
                 <div class="grid-demo" style="margin-left: 50%;font-size: 16px">审核中</div>
             </div>
             <div class="layui-col-sm3">
-                <div class="grid-demo grid-demo-bg1" style="margin-left: 50%;font-size: 16px">审核成功</div>
+                <div class="grid-demo grid-demo-bg1" style="margin-left: 50%;font-size: 16px">审核成功
+                </div>
             </div>
             <div class="layui-col-sm3">
                 <div class="grid-demo" style="margin-left: 50%;font-size: 16px">已缴纳</div>
@@ -94,10 +101,14 @@
     <div class="layui-row layui-col-space1" style="margin-top: 40px">
         <div class="layui-col-md3"></div>
         <div class="layui-col-md3">
-            <button id="test3" type="button" class="layui-btn layui-btn-lg" style="margin-left: 50%; background: #D70010">提交文件</button>
+            <button id="test3" type="button" class="layui-btn layui-btn-lg"
+                    style="margin-left: 50%; background: #D70010">提交文件
+            </button>
         </div>
         <div class="layui-col-md3">
-            <button type="button" class="layui-btn layui-btn-primary layui-btn-lg" style="border-color:#D70010; color: #D70010"><a href="edupay_payinfo.html" style="color: #D70010">返回</a></button>
+            <button id="back" type="button" class="layui-btn layui-btn-primary layui-btn-lg"
+                    style="border-color:#D70010; color: #D70010">返回
+            </button>
         </div>
         <div class="layui-col-md3"></div>
     </div>
@@ -106,40 +117,81 @@
 <script src="layui/layui.js"></script>
 <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
 <script>
-    layui.use('upload', function(){
+    var ress;
+    var studentId = "";
+    var payfeeId = "";
+    $(function () {
+        var url = location.search; //这一条语句获取了包括问号开始到参数的最后，不包括前面的路径
+        console.log(url);
+        var params = url.substr(1);//去掉问号
+        var pa = params.split("&");
+        var s = {};
+        for (var i = 0; i < pa.length; i++) {
+            s[pa[i].split("=")[0]] = unescape(pa[i].split("=")[1]);
+        }
+        studentId = s.studentId + "";
+        payfeeId = s.payfee_id + "";
+    });
+    layui.use('upload', function () {
         var $ = layui.jquery, upload = layui.upload;
 
         //指定允许上传的文件类型
         upload.render({
             elem: '#test3'
-            ,url: 'loan/loanUpload'
-            ,acceptMime: 'application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document'
-            ,done: function(res){
+            ,
+            url: 'loan/loanUpload'
+            ,
+            acceptMime: 'application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+            ,
+            done: function (res) {
                 console.log(res)
             }
         });
     });
 
-
-    //注意进度条依赖 element 模块，否则无法进行正常渲染和功能性操作
-    layui.use('element', function () {
-        var element = layui.element;
-        element.progress('demo', '75%');
+    $("#back").click(function () {
+        window.location.href = 'edupay_payinfo.html?studentId=' + studentId;
     });
-    layui.use('table', function(){
+
+    layui.use('table', function () {
         var table = layui.table;
 
         table.render({
             elem: '#test'
-            ,url:'loan/getLoan?payfee_id' + data.payfee_id
-            ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
-            ,cols: [[
-                {field:'payfee_date', title: '学年', unresize: true}
-                ,{field:'loan_name', title: '收费名称', unresize: true, templet: function(d) {
+            , url: 'loan/getLoan?payfee_id=' + payfeeId
+            , cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+            , parseData: function (res) {
+                //注意进度条依赖 element 模块，否则无法进行正常渲染和功能性操作
+                ress = res;
+                layui.use('element', function () {
+                    var element = layui.element;
+                    if (ress[0].status === undefined)
+                        element.progress('demo', '0%');
+                    else if (ress[0].status === 1)
+                        element.progress('demo', '25%');
+                    else if (ress[0].status === 2)
+                        element.progress('demo', '55%');
+                    else if (ress[0].status === 3)
+                        element.progress('demo', '75%');
+                    else
+                        element.progress('demo', '100%');
+                });
+                return {
+                    "code": 0,
+                    "msg": "",
+                    "count": res.length,
+                    "data": res
+                }
+            }
+            , cols: [[
+                {field: 'payfee_date', title: '学年', unresize: true}
+                , {
+                    field: 'loan_name', title: '收费名称', unresize: true, templet: function (d) {
                         return "学费";
-                    }}
-                ,{field:'needPay', title: '贷款金额', unresize: true}
-                ,{field:'applicateTime', title: '申请时间', unresize: true}
+                    }
+                }
+                , {field: 'payfee', title: '贷款金额', unresize: true}
+                , {field: 'applicate_time', title: '申请时间', unresize: true}
             ]]
         });
     });
