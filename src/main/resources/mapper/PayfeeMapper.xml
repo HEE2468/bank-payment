@@ -89,4 +89,23 @@
 	    #{payfee, jdbcType=FLOAT},
 	    #{check_status, jdbcType=VARCHAR}
 	</insert>
+
+    <!-- 修改卡中金额操作 -->
+    <update id="updateM">
+        update card
+        set card_m = #{card_m}
+        where
+        card_id=#{card_id}
+    </update>
+
+    <!-- 获取缴费金额 -->
+    <select id="getMFromId" parameterType="string" resultType="java.lang.Float">
+          select payfee from payfee_info where payfee_id=#{payfee_id}
+    </select>
+
+    <insert id="addRecord" parameterType="com.cncb.bank_payment.entity.CheckRecord">
+        INSERT INTO check_record
+        VALUES
+	    (#{check_id, jdbcType=VARCHAR}, #{record_date, jdbcType=TIMESTAMP}, #{card_id, jdbcType=VARCHAR}, #{card_flow, jdbcType=VARCHAR}, #{user_id, jdbcType=VARCHAR}, #{payfee_id, jdbcType=VARCHAR}, , #{payfee_id, jdbcType=FLOAT}, #{check_status, jdbcType=VARCHAR})
+    </insert>
 </mapper>

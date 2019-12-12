@@ -195,11 +195,11 @@ Essential Scripts
                 datatype: "json",
                 error: function(){
                     //请求出错处理
-                    layer.alert( "出错了，请与管理员联系",{icon: 2});
+                    alert("出错了，请与管理员联系");
                 },
                 success:function(res){
                     if (res === "FAIL") {
-                        layer.alert('登录失败，请检查输入信息', {icon: 2});
+                        alert("登录失败，请检查输入信息");
                     } else {
                         window.location.href = 'index.html'
                     }

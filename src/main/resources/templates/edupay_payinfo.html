@@ -72,6 +72,21 @@
 <script>
     var dataAll;
     var tempPayfee = 0;
+    var payfeeIds = "";
+    var map = new Map();
+    var studentId = "";
+    $(function(){
+        parent.layer.iframeAuto(parent.layer.getFrameIndex(window.name));
+        var url = location.search; //这一条语句获取了包括问号开始到参数的最后，不包括前面的路径
+        console.log(url);
+        var params = url.substr(1);//去掉问号
+        var pa = params.split("&");
+        var s = {};
+        for(var i = 0; i < pa.length; i ++){
+            s[pa[i].split("=")[0]] = unescape(pa[i].split("=")[1]);
+        }
+        studentId = s.studentId + "";
+    });
     layui.use('table', function () {
         var table = layui.table;
 
@@ -83,6 +98,7 @@
             , defaultToolbar: ['exports', 'print']
             , cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
             , parseData: function (res) {
+                console.log(res);
                 dataAll = res;
                 return {
                     "code": 0,
@@ -128,18 +144,22 @@
         table.on('checkbox(test)', function (obj) {
             if (obj.type === "all") {
                 if (obj.checked === true) {
+                    payfeeIds = "";
                     tempPayfee = 0;
-
                     for (let i = 0; i < dataAll.length; i++) {
                         if (dataAll[i].alreadyPay === undefined) {
                             tempPayfee = accAdd(tempPayfee, accSub(dataAll[i].needPay, 0));
                         } else {
                             tempPayfee = accAdd(tempPayfee, accSub(dataAll[i].needPay, dataAll[i].alreadyPay));
                         }
+                        payfeeIds = payfeeIds + dataAll[i].payfee_id + ",";
                     }
-                    document.getElementById("payfee").innerHTML= "费用总额：" + tempPayfee +"元";
+                    var reg = /,$/gi;
+                    payfeeIds = payfeeIds.replace(reg, "");
+                    document.getElementById("payfee").innerHTML = "费用总额：" + tempPayfee + "元";
                 } else {
-                    document.getElementById("payfee").innerHTML= "费用总额：0元";
+                    payfeeIds = "";
+                    document.getElementById("payfee").innerHTML = "费用总额：0元";
                     tempPayfee = 0;
                 }
             } else {
@@ -149,16 +169,26 @@
                     } else {
                         tempPayfee = accAdd(tempPayfee, accSub(obj.data.needPay, obj.data.alreadyPay));
                     }
-                    document.getElementById("payfee").innerHTML= "费用总额：" + tempPayfee +"元";
+                    map.set(obj.data.payfee_id, obj.data.payfee_id);
+                    document.getElementById("payfee").innerHTML = "费用总额：" + tempPayfee + "元";
                 } else {
                     if (obj.data.alreadyPay === undefined) {
                         tempPayfee = accSub(tempPayfee, accSub(obj.data.needPay, 0));
                     } else {
                         tempPayfee = accSub(tempPayfee, accSub(obj.data.needPay, obj.data.alreadyPay));
                     }
-                    document.getElementById("payfee").innerHTML= "费用总额：" + tempPayfee +"元";
+                    map.delete(obj.data.payfee_id);
+                    document.getElementById("payfee").innerHTML = "费用总额：" + tempPayfee + "元";
                 }
+                payfeeIds = "";
+                map.forEach(function (value, key) {
+                    console.log(value, key);
+                    payfeeIds = payfeeIds + value + ",";
+                });
+                var reg = /,$/gi;
+                payfeeIds = payfeeIds.replace(reg, "");
             }
+            console.log(payfeeIds);
         });
 
         //监听行工具事件
@@ -171,20 +201,38 @@
             }
         });
     });
-    $("#payment").click(function(){
+    $("#payment").click(function () {
         if (tempPayfee !== 0) {
-            layer.ready(function(){
-                layer.open({
-                    type: 2,
-                    title: '新增',
-                    shadeClose: true,
-                    area: ['500px', '550px'],
-                    content: 'payment_iframe.html?payfee=' + tempPayfee + "&accountId=" + "baijuyi",
-                    end: function(){
-                        //layer.tips('Hi', '#about', {tips: 1})
+            $.ajax({
+                url: "payfee/getCard",
+                type: "get",
+                dataType: "json",
+                error: function (res) {
+                    console.log(res);
+                    alert("该账号没有绑定银行卡");
+                },
+                success: function (res) {
+                    console.log(res);
+                    if (res === "FAIL") {
+                        alert("该账号没有绑定银行卡");
+                    } else {
+                        layer.ready(function () {
+                            layer.open({
+                                type: 2,
+                                title: '新增',
+                                shadeClose: true,
+                                area: ['500px', '550px'],
+                                content: 'payment_iframe.html?payfee=' + tempPayfee + '&payfeeIds' + payfeeIds + '&studentId' + studentId,
+                                end: function () {
+                                    //layer.tips('Hi', '#about', {tips: 1})
+                                }
+                            });
+                        });
                     }
-                });
+                }
             });
+        } else {
+            alert("请选择缴费项目");
         }
     });
 

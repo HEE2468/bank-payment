@@ -25,4 +25,10 @@ public interface PayfeeInfoDao {
     List<Card> getCard(String accountId);
 
     Card getCardFromId(String cardNo);
+
+    void updateM(Float card_m, String card_id);
+
+    Float getMFromId(String payfee_id);
+
+    void addRecord(CheckRecord checkRecord);
 }

@@ -28,8 +28,12 @@ public class CardController {
         if (cardId == null) {
             return "FAIL";
         } else {
-
-            return "SUCCESS";
+            String result = cardService.bindCard((String) httpSession.getAttribute("userId"), cardId);
+            if ("SUCCESS".equals(result)) {
+                return "SUCCESS";
+            } else {
+                return "FAIL";
+            }
         }
     }
 }
