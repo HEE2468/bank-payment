@@ -8,6 +8,7 @@ import com.cncb.bank_payment.entity.Card;
  * @description
  */
 public interface CardService {
+    String isExistCard(String card_no, String idenity, String card_tel, String card_name, String card_password);
 
-    int insertCard(Card card);
+    String bindCard(String user_id, String card_id);
 }

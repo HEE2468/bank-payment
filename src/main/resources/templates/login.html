@@ -31,6 +31,7 @@
     <!-- Slick Carousel -->
     <link rel="stylesheet" href="plugins/slick-carousel/slick/slick.css">
     <link rel="stylesheet" href="plugins/slick-carousel/slick/slick-theme.css">
+    <link href="layui/css/layui.css" rel="stylesheet"/>
     <!-- Main Stylesheet -->
     <link rel="stylesheet" href="css/style.css">
 
@@ -167,7 +168,8 @@ Fixed Navigation
 <!--
 Essential Scripts
 =====================================-->
-
+<script src="layui/layui.js"></script>
+<script src="layer/layer.js"></script>
 <!-- Main jQuery -->
 <script src="plugins/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.7 -->
@@ -182,7 +184,7 @@ Essential Scripts
 <script src="js/script.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
-        $("#login").bind("click", function () {
+        $("#login").on("click", function () {
             $.ajax({
                 type:"post",
                 url:"user/login",
@@ -193,7 +195,7 @@ Essential Scripts
                 datatype: "json",
                 error: function(){
                     //请求出错处理
-                    layer.alert('出错了，请与管理员联系！', {icon: 2});
+                    layer.alert( "出错了，请与管理员联系",{icon: 2});
                 },
                 success:function(res){
                     if (res === "FAIL") {

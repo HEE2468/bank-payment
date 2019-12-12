@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>缴费费用管理弹出页</title>
+    <link href="layui/css/layui.css" rel="stylesheet" media="all">
+</head>
+<body style="padding: 30px 50px 30px 30px">
+<form class="layui-form" action="">
+    <div class="layui-form-item">
+        <label class="layui-form-label">缴纳金额</label>
+        <div class="layui-input-block">
+            <input id="employee_name" type="text" name="uempname" required lay-verify="required" placeholder="员工姓名"
+                   autocomplete="off" class="layui-input" disabled="true">
+        </div>
+    </div>
+    <div id="username" class="layui-form-item">
+        <label class="layui-form-label">银行卡</label>
+        <div class="layui-input-block">
+            <select id="employee_list" name="uempid" lay-verify="" lay-filter="employee_list">
+                <option value="">请选择银行卡</option>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">银行6位密码</label>
+        <div class="layui-input-block">
+            <input id="card_password" type="password" name="uempname" required lay-verify="required" placeholder="请输入银行6位密码"
+                   autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="formDemo">提交</button>
+            <button class="layui-btn layui-btn-primary">取消</button>
+        </div>
+    </div>
+</form>
+<script src="js/jquery/jquery.min.js"></script>
+<script src="layer/layer.js"></script>
+<script src="layui/layui.js"></script>
+<script>
+    var payfee;
+    var id;
+    $(function(){
+        parent.layer.iframeAuto(parent.layer.getFrameIndex(window.name));
+        var url = location.search; //这一条语句获取了包括问号开始到参数的最后，不包括前面的路径
+        console.log(url);
+        var params = url.substr(1);//去掉问号
+        var pa = params.split("&");
+        var s = {};
+        for(var i = 0; i < pa.length; i ++){
+            s[pa[i].split("=")[0]] = unescape(pa[i].split("=")[1]);
+        }
+        payfee = s.payfee + "";
+        id = s.accountId + "";
+        $("#employee_name").attr('value', payfee + "元");
+        $.ajax({
+            url: "payfee/getCard?accountId=" + id,
+            type: "get",
+            dataType: "json",
+            error: function () {
+                layer.alert('出错了，请与管理员联系！', {icon: 2});
+            },
+            success: function (res) {
+                console.log(res);
+                $.each(res, function (index, item) {
+                    $('#employee_list').append(new Option(item.card_no, item.card_id));// 下拉菜单里添加元素
+                });
+                layui.form.render('select');
+            }
+        });
+    });
+
+    layui.use('form', function () {
+        var form = layui.form;
+        //监听提交
+        form.on('submit(formDemo)', function (data) {
+            $.ajax({
+                type:"post",
+                url:"",
+                data : {
+                    uempid : $("#employee_list option:selected").text(),
+                    uempname : data.field.uempname
+                },
+                datatype: "json",
+                error: function(){
+                    //请求出错处理
+                    layer.alert('出错了，请与管理员联系！', {icon: 2});
+                },
+                success:function(res){
+                    if (res === "FAIL") {
+                        parent.layer.alert('新增失败', {icon: 2});
+                        parent.layer.close(parent.layer.getFrameIndex(window.name));
+                    } else {
+                        parent.layer.alert('新增成功', {icon: 1});
+                        parent.layui.table.reload('attendance_table', {
+                            url: '/pm/attendance/getAllAttendance'
+                        });
+                        parent.layer.close(parent.layer.getFrameIndex(window.name));
+                    }
+                }
+            });
+            return false;
+        });
+    });
+</script>
+</body>
+</html>

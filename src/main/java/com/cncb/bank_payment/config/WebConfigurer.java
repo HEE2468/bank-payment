@@ -25,6 +25,6 @@ public class WebConfigurer implements WebMvcConfigurer {
         // addPathPatterns("/**") 表示拦截所有的请求，
         // 在excludePathPatterns中除了要放行登录界面和登录接口外，还需要放行static文件夹下的静态资源
         InterceptorRegistration loginRegistry = interceptorRegistry.addInterceptor(loginInterceptor);
-        loginRegistry.addPathPatterns("/**").excludePathPatterns("/index.html", "/signup.html","/lifepay.html", "/edupay.html", "/insurancepay.html", "/login.html", "/login", "/js/**", "/css/**", "/plugins/**", "/images/**", "/login/**");
+        loginRegistry.addPathPatterns("/**").excludePathPatterns("/index.html", "/account/insertAccount", "/user/login", "/signup.html", "/lifepay.html", "/edupay.html", "/insurancepay.html", "/login.html", "/js/**", "/css/**", "/plugins/**", "/images/**", "/layui/**", "/layer/**");
     }
 }

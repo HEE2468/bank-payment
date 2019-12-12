@@ -13,5 +13,7 @@ import org.springframework.stereotype.Component;
 @Component(value = "CardDao")
 public interface CardDao {
 
-    int insertCard(Card card);
+    String isExistCard(String card_no, String idenity, String card_tel, String card_name, String card_password);
+
+    void bindCard(String user_id, String card_id);
 }

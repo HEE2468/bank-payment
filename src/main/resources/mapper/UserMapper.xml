@@ -14,7 +14,7 @@
             user_id,
             user_name,
             user_tel,
-            idenity,
+            identity,
             user_paw
         </trim>
         )

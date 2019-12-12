@@ -97,7 +97,7 @@ Start About Section
         <div class="row">
             <!-- Contact Form -->
             <div class="contact-form col-12 col-md-6  mx-auto" >
-                <form id="contact-form" method="post" action="edupay_payment.html" role="form">
+                <form id="contact-form" role="form">
                     <div class="form-group">
                         <input type="text" placeholder="请输入银行卡号" class="form-control" name="cardnum" id="cardnum">
                     </div>
@@ -110,8 +110,11 @@ Start About Section
                     <div class="form-group">
                         <input type="text" placeholder="请输入预留手机号" class="form-control" name="phonenum" id="phonenum">
                     </div>
+                    <div class="form-group">
+                        <input type="password" placeholder="请输入银行卡密码" class="form-control" name="password" id="password">
+                    </div>
                     <div id="cf-submit">
-                        <a href="edupay_payinfo.html" class="btn btn-main">确认绑定</a>
+                        <button id="add" type="button" class="btn btn-main text-center">确认绑定</button>
                     </div>
                 </form>
             </div>
@@ -205,11 +208,40 @@ Essential Scripts
     Plotly.newPlot('myDiv', data);
 </script>
 <!-- Smooth Scroll js -->
+<!-- Main jQuery -->
+<script src="plugins/jquery/dist/jquery.min.js"></script>
 <script src="plugins/smooth-scroll/dist/js/smooth-scroll.min.js"></script>
-
-
 <!-- Custom js -->
 <script src="js/script.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#add").on("click", function () {
+            $.ajax({
+                type: "post",
+                url: "card/insertAccount",
+                data: {
+                    cardnum: $("#cardnum").val(),
+                    cardname: $("#cardname").val(),
+                    cernum: $("#cernum").val(),
+                    phonenum: $("#phonenum").val(),
+                    password: $("#password").val()
+                },
+                datatype: "json",
+                error: function () {
+                    alert("出错了，请与管理员联系");
+                },
+                success: function (res) {
+                    if (res === "FAIL") {
+                        alert('绑定失败，请检查输入信息');
+                    } else {
+                        alert('绑定成功');
+                        window.location.href = 'index.html'
+                    }
+                }
+            });
+        });
+    });
+</script>
 
 </body>
 </html>

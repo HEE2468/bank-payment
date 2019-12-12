@@ -12,7 +12,7 @@ public class Card {
     private String card_name;
     private String idenity;
     private Float card_m;
-    private String card_passward;
+    private String card_password;
     private String user_id;
 
     public String getCard_id() {
@@ -63,12 +63,12 @@ public class Card {
         this.card_m = card_m;
     }
 
-    public String getCard_passward() {
-        return card_passward;
+    public String getCard_password() {
+        return card_password;
     }
 
-    public void setCard_passward(String card_passward) {
-        this.card_passward = card_passward;
+    public void setCard_password(String card_password) {
+        this.card_password = card_password;
     }
 
     public String getUser_id() {

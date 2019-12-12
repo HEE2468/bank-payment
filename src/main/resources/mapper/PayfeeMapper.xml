@@ -19,6 +19,16 @@
         <result column="payfee" property="payfee" jdbcType="FLOAT" />
         <result column="check_status" property="check_status" jdbcType="VARCHAR" />
     </resultMap>
+    <resultMap id="CardMap" type="com.cncb.bank_payment.entity.Card">
+        <id column="card_id" property="card_id" jdbcType="VARCHAR" />
+        <result column="card_no" property="card_no" jdbcType="VARCHAR" />
+        <result column="card_tel" property="card_tel" jdbcType="VARCHAR" />
+        <result column="card_name" property="card_name" jdbcType="VARCHAR" />
+        <result column="idenity" property="idenity" jdbcType="VARCHAR" />
+        <result column="user_id" property="user_id" jdbcType="VARCHAR" />
+        <result column="card_m" property="card_m" jdbcType="FLOAT" />
+        <result column="card_password" property="card_password" jdbcType="VARCHAR" />
+    </resultMap>
 
     <select id="getPayfeeFromStudentId" resultType="java.util.HashMap">
         SELECT
@@ -34,6 +44,38 @@
         LEFT JOIN loan ON loan.payfee_id = payfee_info.payfee_id
         WHERE
             payfee_info.student_id = #{studentId}
+    </select>
+
+    <select id="getCard" resultMap="CardMap">
+        SELECT
+            card.card_id,
+            card.card_no,
+            card.card_tel,
+            card.card_name,
+            card.idenity,
+            card.user_id,
+            card.card_m,
+            card.card_password
+        FROM
+            card
+        WHERE
+            card.user_id = #{accountId}
+    </select>
+
+    <select id="getCardFromId" resultMap="CardMap">
+        SELECT
+            card.card_id,
+            card.card_no,
+            card.card_tel,
+            card.card_name,
+            card.idenity,
+            card.user_id,
+            card.card_m,
+            card.card_password
+        FROM
+            card
+        WHERE
+            card.card_no = #{cardNo}
     </select>
 
     <insert id="addCheckRecord">

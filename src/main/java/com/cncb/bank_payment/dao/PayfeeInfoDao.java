@@ -1,5 +1,6 @@
 package com.cncb.bank_payment.dao;
 
+import com.cncb.bank_payment.entity.Card;
 import com.cncb.bank_payment.entity.CheckRecord;
 import com.cncb.bank_payment.entity.PayfeeInfo;
 
@@ -20,4 +21,8 @@ public interface PayfeeInfoDao {
     List<Map<String, Object>> getPayfeeFromStudentId(String studentId);
 
     void addCheckRecord(CheckRecord checkRecord);
+
+    List<Card> getCard(String accountId);
+
+    Card getCardFromId(String cardNo);
 }

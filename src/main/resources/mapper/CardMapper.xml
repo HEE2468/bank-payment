@@ -1,31 +1,43 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC
-        "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE mapper PUBLIC
+    "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cncb.bank_payment.dao.CardDao">
 
-    <insert id="insertCard" parameterType="com.cncb.bank_payment.entity.Card">
-        INSERT INTO Card(
-        <trim prefixOverrides=",">
-            card_id,
-            card_no,
-            card_tel,
-            card_name,
-            idenity ,
-            card_m,
-            user_id
-        </trim>
-        )VALUES (
-        <trim suffixOverrides=",">
-            #{card_id},
-            #{card_no},
-            #{card_tel},
-            #{card_name},
-            #{idenity},
-            #{card_m},
-            #{user_id}
-        </trim>
-        )
-    </insert>
+    <!-- <insert id="insertCard" parameterType="com.cncb.bank_payment.entity.Card">
+     INSERT INTO Card( <trim prefixOverrides=","> card_id, card_no, card_tel,
+     card_name, idenity , card_m, user_id </trim> )VALUES ( <trim suffixOverrides=",">
+     #{card_id}, #{card_no}, #{card_tel}, #{card_name}, #{idenity}, #{card_m},
+     #{user_id} </trim> ) </insert> -->
+
+    <!-- 查询当前用户所有的银行卡列表 -->
+    <select id="selectUserAllCard" parameterType="com.cncb.bank_payment.entity.Card">
+          SELECT * FROM card
+          WHERE user_id = #{user_id}
+    </select>
+
+    <!-- 判断添加的卡是否存在 -->
+    <select id="isExistCard" parameterType="com.cncb.bank_payment.entity.Card">
+          select card_id from card where card_no=#{card_no}
+          and
+          idenity=#{idenity}
+          and card_tel =#{card_tel}
+          and card_name=#{card_name}
+          and card_password =#{card_password}
+    </select>
+
+    <!-- 绑卡操作 -->
+    <update id="bindCard" parameterType="java.lang.String">
+        update card
+        set user_id = #{user_id}
+        where
+        card_id=#{card_id}
+    </update>
+
+    <!-- 解绑操作 -->
+    <update id="unbindCard" parameterType="java.lang.String">
+  update card
+  set user_id = ''
+  where card_id=#{card_id}
+ </update>
 
 </mapper>

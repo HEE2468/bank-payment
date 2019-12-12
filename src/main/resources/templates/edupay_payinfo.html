@@ -58,7 +58,7 @@
     </div>
 </section>
 <div style="width: 70%; margin: 0 auto">
-    <button type="button" class="layui-btn layui-btn-lg"
+    <button id="payment" type="button" class="layui-btn layui-btn-lg"
             style="margin:20px 0 10px 89%; background: #D70010;">缴纳费用
     </button>
     <table class="layui-hide" id="test" lay-filter="test"></table>
@@ -69,6 +69,7 @@
     <a class="layui-btn layui-btn-xs" lay-event="edit" style="background: #FFFFFF00;color: #CC0000">申请助学贷款</a>
 </script>
 
+<script src="js/jquery/jquery.min.js"></script>
 <script src="layui/layui.js" charset="utf-8"></script>
 <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
 
@@ -173,6 +174,22 @@
                 window.location.href = 'loanApplication.html?payfee_id=' + data.payfee_id;
             }
         });
+    });
+    $("#payment").click(function(){
+        if (tempPayfee !== 0) {
+            layer.ready(function(){
+                layer.open({
+                    type: 2,
+                    title: '新增',
+                    shadeClose: true,
+                    area: ['500px', '550px'],
+                    content: 'payment_iframe.html?payfee=' + tempPayfee + "&accountId=" + "baijuyi",
+                    end: function(){
+                        //layer.tips('Hi', '#about', {tips: 1})
+                    }
+                });
+            });
+        }
     });
 
     function accAdd(arg1, arg2) {

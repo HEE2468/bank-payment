@@ -1,34 +1,37 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> 
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
 <html class="no-js"> <!--<![endif]-->
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta name="description" content="Bingo One page parallax responsive HTML Template ">
-  <meta name="author" content="">
-  <title>中信银行惠支付平台</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="description" content="Bingo One page parallax responsive HTML Template ">
+    <meta name="author" content="">
+    <title>中信银行惠支付平台</title>
 
-<!-- Mobile Specific Meta
-  ================================================== -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  
-  <!-- Favicon -->
-  <link rel="shortcut icon" type="image/x-icon" href="img/favicon.png" />
-  
-  <!-- CSS
-  ================================================== -->
-  <!-- Themefisher Icon font -->
-  <link rel="stylesheet" href="plugins/themefisher-font.v-2/style.css">
-  <!-- bootstrap.min css -->
-  <link rel="stylesheet" href="plugins/bootstrap/dist/css/bootstrap.min.css">
-  <!-- Slick Carousel -->
-  <link rel="stylesheet" href="plugins/slick-carousel/slick/slick.css">
-  <link rel="stylesheet" href="plugins/slick-carousel/slick/slick-theme.css">
-  <!-- Main Stylesheet -->
-  <link rel="stylesheet" href="css/style.css">
-  
+    <!-- Mobile Specific Meta
+      ================================================== -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.png"/>
+
+    <!-- CSS
+    ================================================== -->
+    <!-- Themefisher Icon font -->
+    <link rel="stylesheet" href="plugins/themefisher-font.v-2/style.css">
+    <!-- bootstrap.min css -->
+    <link rel="stylesheet" href="plugins/bootstrap/dist/css/bootstrap.min.css">
+    <!-- Slick Carousel -->
+    <link rel="stylesheet" href="plugins/slick-carousel/slick/slick.css">
+    <link rel="stylesheet" href="plugins/slick-carousel/slick/slick-theme.css">
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+
 
 </head>
 <body id="body">
@@ -43,7 +46,10 @@ Fixed Navigation
                     <a class="navbar-brand" href="index.html">
                         <img src="images/logo1.png" alt="" width="150px">
                     </a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                            data-target="#navbarSupportedContent"
+                            aria-controls="navbarSupportedContent" aria-expanded="false"
+                            aria-label="Toggle navigation">
                         <span class="tf-ion-android-menu"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -77,88 +83,90 @@ Fixed Navigation
 
 
 <!-- Srart Contact Us
-		=========================================== -->		
-	<section class="contact-us section bg-gray" id="contact">
-		<div class="container">
-			<div class="row">
-				<div class="col">
-					<div class="title text-center">
-						<h5>请输入相关信息</h5>
-					</div>
-				</div>
-			</div>
-            <div class="updown" align="center">
-                    <h6>学校类别：</h6>
-                <div class="select_list">
-                    <select class="select_demo" id="schooltype" onChange="change()">
-                        <option selected="selected">幼儿园</option>
-                        <option>小学</option>
-                        <option>中学</option>
-                        <option>大学</option>
-                    </select>
+		=========================================== -->
+<section class="contact-us section bg-gray" id="contact">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="title text-center">
+                    <h5>请输入相关信息</h5>
                 </div>
-            <p></p>
-                    <h6>学校名称：</h6>
-                <div class="select_list">
-                    <select class="select_demo" id="schoolname">
-                        <option>阳光小学</option>
-                        <option>春熙幼儿园</option>
-                        <option>阳光中学</option>
-                        <option>阳光大学</option>
-                        <option selected="selected">阳光幼儿园</option>
-                    </select>
-                </div>
-                <style media="screen">
-                 .select_demo,
-        .select_list {
-            width: 400px;
-            height: 60px;
-        }
-
-        .select_demo {
-            background-color: #fbe4e8;
-        }
-
-        .select_list {
-            border: solid 2px #96cffd;
-            font-size: 30px;
-            padding-left: 20px;
-            /*很关键：将默认的select选择框样式清除*/
-            appearance: none;
-            -moz-appearance: none;
-            -webkit-appearance: none;
-             /*在选择框的最右侧中间显示小箭头图片*/
-            background: url("images/icons/updown_icon.png") no-repeat scroll right center transparent;
-            background-position-x: 330px;
-        }
-
-        /*清除ie的默认选择框样式清除，隐藏下拉箭头*/
-        select::-ms-expand {
-            display: none;
-        }
-    </style>
+            </div>
+        </div>
+        <div class="updown" align="center">
+            <h6>学校类别：</h6>
+            <div class="select_list">
+                <select class="select_demo" id="schooltype" onChange="change()">
+                    <option selected="selected">幼儿园</option>
+                    <option>小学</option>
+                    <option>中学</option>
+                    <option>大学</option>
+                </select>
             </div>
             <p></p>
-            <div class="row">
-				<!-- Contact Form -->
-				<div class="contact-form col-12 col-md-6  mx-auto" >
-					<form id="contact-form" method="post" action="payment.html" role="form">
-						<div class="form-group">
-							<input type="text" placeholder="请输入姓名" class="form-control" name="stdname" id="stdname">
-						</div>
-						<div class="form-group">
-							<input type="text" placeholder="请输入学号" class="form-control" name="stdnum" id="stdnum">
-						</div>
-                        <div id="cf-submit">
-                            <a href="edupay_payinfo.html" class="btn btn-main">确认</a>
-                        </div>
-                    </form>
-				</div>
-				<!-- ./End Contact Form -->
-			</div> <!-- end row -->
-			
-		</div> <!-- end container -->
-	</section> <!-- end section -->
+            <h6>学校名称：</h6>
+            <div class="select_list">
+                <select class="select_demo" id="schoolname">
+                    <option>阳光小学</option>
+                    <option>春熙幼儿园</option>
+                    <option>阳光中学</option>
+                    <option>阳光大学</option>
+                    <option selected="selected">阳光幼儿园</option>
+                </select>
+            </div>
+            <style media="screen">
+                .select_demo,
+                .select_list {
+                    width: 400px;
+                    height: 60px;
+                }
+
+                .select_demo {
+                    background-color: #fbe4e8;
+                }
+
+                .select_list {
+                    border: solid 2px #96cffd;
+                    font-size: 30px;
+                    padding-left: 20px;
+                    /*很关键：将默认的select选择框样式清除*/
+                    appearance: none;
+                    -moz-appearance: none;
+                    -webkit-appearance: none;
+                    /*在选择框的最右侧中间显示小箭头图片*/
+                    background: url("images/icons/updown_icon.png") no-repeat scroll right center transparent;
+                    background-position-x: 330px;
+                }
+
+                /*清除ie的默认选择框样式清除，隐藏下拉箭头*/
+                select::-ms-expand {
+                    display: none;
+                }
+            </style>
+        </div>
+        <p></p>
+        <div class="row">
+            <!-- Contact Form -->
+            <div class="contact-form col-12 col-md-6  mx-auto">
+                <form id="contact-form" method="post" action="payment.html" role="form">
+                    <div class="form-group">
+                        <input type="text" placeholder="请输入姓名" class="form-control" name="stdname"
+                               id="stdname">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" placeholder="请输入学号" class="form-control" name="stdnum"
+                               id="stdnum">
+                    </div>
+                    <div id="cf-submit">
+                        <a href="edupay_payinfo.html" class="btn btn-main">确认</a>
+                    </div>
+                </form>
+            </div>
+            <!-- ./End Contact Form -->
+        </div> <!-- end row -->
+
+    </div> <!-- end container -->
+</section> <!-- end section -->
 
 <footer id="footer" class="bg-one">
     <div class="top-footer">
@@ -206,60 +214,62 @@ Fixed Navigation
         </div> <!-- end container -->
     </div>
     <div class="footer-bottom">
-        <h5>中信银行股份有限公司版权所有 Copyright © CITIC Bank All rights reserved</h5> <h6>京公网安备11010502020433号 京ICP备16038101号</h6>
+        <h5>中信银行股份有限公司版权所有 Copyright © CITIC Bank All rights reserved</h5> <h6>京公网安备11010502020433号
+        京ICP备16038101号</h6>
     </div>
 </footer> <!-- end footer -->
 
 
-    <!-- end Footer Area
-    ========================================== -->
+<!-- end Footer Area
+========================================== -->
 
 
-    
-    <!-- 
-    Essential Scripts
-    =====================================-->
-    
-    <!-- Main jQuery -->
-    <script src="plugins/jquery/dist/jquery.min.js"></script>
-    <!-- Bootstrap 3.7 -->
-    <script src="plugins/bootstrap/dist/js/popper.min.js"></script>
-    <script src="plugins/bootstrap/dist/js/bootstrap.min.js"></script>
-    <!-- Owl Carousel -->
-    <script src="plugins/slick-carousel/slick/slick.min.js"></script>
+<!--
+Essential Scripts
+=====================================-->
 
-    </script>
-    <!-- Smooth Scroll js -->
-    <script src="plugins/smooth-scroll/dist/js/smooth-scroll.min.js"></script>
-    <!-- Custom js -->
-    <script src="js/script.js"></script>
-    <script>
-function change()
-{
-   var x = document.getElementById("schooltype");
-   var y = document.getElementById("schoolname");
-   y.options.length = 0; // 清除second下拉框的所有内容
-   if(x.selectedIndex == 0)
-   {
-		y.options.add(new Option("春熙幼儿园", "0"));
-		y.options.add(new Option("阳光幼儿园", "1", false, true));  // 默认选中省会城市
-   }
+<!-- Main jQuery -->
+<script src="plugins/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap 3.7 -->
+<script src="plugins/bootstrap/dist/js/popper.min.js"></script>
+<script src="plugins/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- Owl Carousel -->
+<script src="plugins/slick-carousel/slick/slick.min.js"></script>
+<!-- Smooth Scroll js -->
+<script src="plugins/smooth-scroll/dist/js/smooth-scroll.min.js"></script>
+<!-- Custom js -->
+<script src="js/script.js"></script>
+<script>
+    function change() {
+        var x = document.getElementById("schooltype");
+        var y = document.getElementById("schoolname");
+        y.options.length = 0; // 清除second下拉框的所有内容
+        if (x.selectedIndex == 0) {
+            y.options.add(new Option("四川音乐学院蜀都花园幼儿园", "20190108"));
+            y.options.add(new Option("三电公司同济公司幼儿园", "20190107"));
+            y.options.add(new Option("第三幼儿园东升分园", "20190106"));
+            y.options.add(new Option("成都海蓓幼儿园", "20190105"));
+            y.options.add(new Option("通顺幼儿园", "20190104"));
+            y.options.add(new Option("皇家幼儿园", "20190103"));
+            y.options.add(new Option("达州市金兰幼稚园", "20190102"));
+            y.options.add(new Option("大风车幼儿园", "20190101"));
+        }
+        if (x.selectedIndex == 1) {
+            y.options.add(new Option("阳光小学", "0", false, true));
+            y.options.add(new Option("阳光小学", "0", false, true));
+            y.options.add(new Option("阳光小学", "0", false, true));
+            y.options.add(new Option("阳光小学", "0", false, true));
+            y.options.add(new Option("阳光小学", "0", false, true));
+            y.options.add(new Option("阳光小学", "0", false, true));
+        }
+        if (x.selectedIndex == 2) {
+            y.options.add(new Option("阳光中学", "0", false, true));
+        }
+        if (x.selectedIndex == 3) {
+            y.options.add(new Option("阳光大学", "0", false, true));
+        }
+    }
+</script>
 
-   if(x.selectedIndex == 1)
-   {
-		y.options.add(new Option("阳光小学", "0", false, true));
-   }
-    if(x.selectedIndex == 2)
-   {
-	    y.options.add(new Option("阳光中学", "0", false, true));
-   }
-    if(x.selectedIndex == 3)
-   {
-		y.options.add(new Option("阳光大学", "0", false, true));
-   }
-
-}
-    </script>
-
-  </body>
-  </html>
+</body>
+</html>
