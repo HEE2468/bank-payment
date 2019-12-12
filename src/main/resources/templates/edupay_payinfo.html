@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>layout 后台大布局 - Layui</title>
+    <title>中信银行惠支付平台</title>
     <! -- bootstrap.min css -->
     <link rel="stylesheet" href="plugins/bootstrap/dist/css/bootstrap.min.css">
     <!-- Slick Carousel -->
@@ -45,10 +45,10 @@
                                 <a class="nav-link" href="contact.html">社会保障</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="login.html">登录</a>
+                                <a class="nav-link" href="user.html">我的</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="signup.html">注册</a>
+                                <a class="nav-link" href="login.html">登录</a>
                             </li>
                         </ul>
                     </div>
@@ -59,7 +59,7 @@
 </section>
 <div style="width: 70%; margin: 0 auto">
     <button id="payment" type="button" class="layui-btn layui-btn-lg"
-            style="margin:20px 0 10px 89%; background: #D70010;">缴纳费用
+            style="margin:20px 0 10px 84%; background: #D70010;">缴纳费用
     </button>
     <table class="layui-hide" id="test" lay-filter="test"></table>
     <p id="payfee" style="color: #D70010; float: right; font-size: 20px">费用总额：0元</p>
@@ -222,7 +222,6 @@
                         layer.ready(function () {
                             layer.open({
                                 type: 2,
-                                title: '新增',
                                 shadeClose: true,
                                 area: ['500px', '550px'],
                                 content: 'payment_iframe.html?payfe=' + tempPayfee + '&payfeeId=' + payfeeIds + '&studentId=' + studentId,
