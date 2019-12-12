@@ -1,10 +1,7 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>
-<html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>
-<html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>
-<html class="no-js lt-ie9"> <![endif]-->
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!-->
 <html class="no-js"> <!--<![endif]-->
 <head>
@@ -64,7 +61,7 @@ Fixed Navigation
                                 <a class="nav-link" href="edupay.html">教育培训</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="insurancepay.html">保险医疗</a>
+                                <a class="nav-link" href="insurancepay.html">社会医疗</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="user.html">我的</a>
@@ -89,60 +86,24 @@ Fixed Navigation
         <div class="row">
             <div class="col">
                 <div class="title text-center">
-                    <h5>请输入相关信息</h5>
+                    <h5>请输入学生信息</h5>
                 </div>
             </div>
         </div>
         <div class="updown" align="center">
-            <h6>学校类别：</h6>
-            <div class="select_list">
+            <h6>学校类别：
                 <select class="select_demo" id="schooltype" onChange="change()">
-                    <option selected="selected">幼儿园</option>
+                    <option selected="selected">请选择</option>
+                    <option>幼儿园</option>
                     <option>小学</option>
                     <option>中学</option>
                     <option>大学</option>
                 </select>
-            </div>
-            <p></p>
-            <h6>学校名称：</h6>
-            <div class="select_list">
+                学校名称：
                 <select class="select_demo" id="schoolname">
-                    <option>阳光小学</option>
-                    <option>春熙幼儿园</option>
-                    <option>阳光中学</option>
-                    <option>阳光大学</option>
-                    <option selected="selected">阳光幼儿园</option>
+                    <option selected="selected">请选择</option>
                 </select>
-            </div>
-            <style media="screen">
-                .select_demo,
-                .select_list {
-                    width: 400px;
-                    height: 60px;
-                }
-
-                .select_demo {
-                    background-color: #fbe4e8;
-                }
-
-                .select_list {
-                    border: solid 2px #96cffd;
-                    font-size: 30px;
-                    padding-left: 20px;
-                    /*很关键：将默认的select选择框样式清除*/
-                    appearance: none;
-                    -moz-appearance: none;
-                    -webkit-appearance: none;
-                    /*在选择框的最右侧中间显示小箭头图片*/
-                    background: url("images/icons/updown_icon.png") no-repeat scroll right center transparent;
-                    background-position-x: 330px;
-                }
-
-                /*清除ie的默认选择框样式清除，隐藏下拉箭头*/
-                select::-ms-expand {
-                    display: none;
-                }
-            </style>
+            </h6>
         </div>
         <p></p>
         <div class="row">
@@ -240,36 +201,43 @@ Essential Scripts
 <!-- Custom js -->
 <script src="js/script.js"></script>
 <script>
-    function change() {
-        var x = document.getElementById("schooltype");
-        var y = document.getElementById("schoolname");
-        y.options.length = 0; // 清除second下拉框的所有内容
-        if (x.selectedIndex == 0) {
-            y.options.add(new Option("四川音乐学院蜀都花园幼儿园", "20190108"));
-            y.options.add(new Option("三电公司同济公司幼儿园", "20190107"));
-            y.options.add(new Option("第三幼儿园东升分园", "20190106"));
-            y.options.add(new Option("成都海蓓幼儿园", "20190105"));
-            y.options.add(new Option("通顺幼儿园", "20190104"));
-            y.options.add(new Option("皇家幼儿园", "20190103"));
-            y.options.add(new Option("达州市金兰幼稚园", "20190102"));
-            y.options.add(new Option("大风车幼儿园", "20190101"));
-        }
-        if (x.selectedIndex == 1) {
-            y.options.add(new Option("阳光小学", "0", false, true));
-            y.options.add(new Option("阳光小学", "0", false, true));
-            y.options.add(new Option("阳光小学", "0", false, true));
-            y.options.add(new Option("阳光小学", "0", false, true));
-            y.options.add(new Option("阳光小学", "0", false, true));
-            y.options.add(new Option("阳光小学", "0", false, true));
-        }
-        if (x.selectedIndex == 2) {
-            y.options.add(new Option("阳光中学", "0", false, true));
-        }
-        if (x.selectedIndex == 3) {
-            y.options.add(new Option("阳光大学", "0", false, true));
-        }
-    }
-</script>
+function change()
+{
+   var x = document.getElementById("schooltype");
+   var y = document.getElementById("schoolname");
+   y.options.length = 0; // 清除second下拉框的所有内容
+   if(x.selectedIndex == 0)
+   {
+		y.options.add(new Option("请选择", "0"));
+   }
+   if(x.selectedIndex == 1)
+   {
+		y.options.add(new Option("大风车幼儿园", "0"));
+		y.options.add(new Option("达州市金兰幼稚园", "0"));
+		y.options.add(new Option("皇家幼儿园", "0"));
+   }
+
+   if(x.selectedIndex == 2)
+   {
+		y.options.add(new Option("成都市华兴小学", "0"));
+		y.options.add(new Option("成都市盐道街小学", "0"));
+		y.options.add(new Option("成都成华实验小学", "0"))
+   }
+    if(x.selectedIndex == 3)
+   {
+	   	y.options.add(new Option("成都市树德实验中学", "0"));
+		y.options.add(new Option("北京师范大学成都实验中学", "0"));
+		y.options.add(new Option("绵阳五中", "0"))
+   }
+    if(x.selectedIndex == 4)
+   {
+		y.options.add(new Option("西南财经大学", "0"));
+		y.options.add(new Option("电子科技大学", "0"));
+		y.options.add(new Option("四川大学", "0"))
+   }
+
+}
+    </script>
 
 </body>
 </html>
