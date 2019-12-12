@@ -43,7 +43,7 @@ public class LoanController {
     }
 
     @RequestMapping(value = "loanUpload", method = RequestMethod.POST)
-    public String upload(String studentSno, HttpSession httpSession, Float loanAmount, String loanName, MultipartFile file) {
+    public String upload(String payfee_id, String studentSno, HttpSession httpSession, Float loanAmount, MultipartFile file) {
         String id = EntityIDFactory.createId();
 
         if (file.isEmpty()) {
@@ -53,7 +53,7 @@ public class LoanController {
         String fileName = file.getOriginalFilename();  // 文件名
         String filePath = "D://LoanApplicate//"; // 上传后的路径
         fileName = id + "-" + fileName; // 新文件名
-        Loan loan = new Loan(id, studentSno, (String) httpSession.getAttribute("userId"), filePath + fileName, new Timestamp(new Date().getTime()), loanAmount, loanName, 1);
+        Loan loan = new Loan(id, studentSno, (String) httpSession.getAttribute("userId"), filePath + fileName, new Timestamp(new Date().getTime()), loanAmount, "学费", 1, payfee_id);
         String result = loanService.applicateUpload(loan);
         if ("SUCCESS".equals(result)) {
             File localFile = new File(filePath + fileName);

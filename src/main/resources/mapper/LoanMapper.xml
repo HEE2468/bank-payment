@@ -12,6 +12,7 @@
         <result column="loan_amount" property="loanAmount" jdbcType="FLOAT" />
         <result column="loan_name" property="loanName" jdbcType="VARCHAR" />
         <result column="status" property="status" jdbcType="INTEGER" />
+		<result column="payfee_id" property="payfeeId" jdbcType="VARCHAR" />
     </resultMap>
 	<resultMap id="PayfeeMap" type="com.cncb.bank_payment.entity.PayfeeInfo">
 		<id column="payfee_id" property="payfee_id" jdbcType="VARCHAR" />
@@ -61,7 +62,8 @@
 	    #{applicateTime, jdbcType=TIMESTAMP},
 	    #{loanAmount, jdbcType=VARCHAR},
 	    #{loanName, jdbcType=VARCHAR},
-	    #{status, jdbcType=INTEGER}
+	    #{status, jdbcType=INTEGER},
+	    #{payfeeId, jdbcType=VARCHAR})
     </insert>
 
 	<select id="getLoanFromPayfeeId" resultType="java.util.HashMap">

@@ -120,6 +120,7 @@
     var ress;
     var studentId = "";
     var payfeeId = "";
+    var payfeee = "";
     $(function () {
         var url = location.search; //这一条语句获取了包括问号开始到参数的最后，不包括前面的路径
         console.log(url);
@@ -132,23 +133,6 @@
         studentId = s.studentId + "";
         payfeeId = s.payfee_id + "";
     });
-    layui.use('upload', function () {
-        var $ = layui.jquery, upload = layui.upload;
-
-        //指定允许上传的文件类型
-        upload.render({
-            elem: '#test3'
-            ,
-            url: 'loan/loanUpload'
-            ,
-            acceptMime: 'application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document'
-            ,
-            done: function (res) {
-                console.log(res)
-            }
-        });
-    });
-
     $("#back").click(function () {
         window.location.href = 'edupay_payinfo.html?studentId=' + studentId;
     });
@@ -165,6 +149,7 @@
                 ress = res;
                 layui.use('element', function () {
                     var element = layui.element;
+                    payfeee = ress[0].payfee;
                     if (ress[0].status === undefined)
                         element.progress('demo', '0%');
                     else if (ress[0].status === 1)
@@ -193,6 +178,25 @@
                 , {field: 'payfee', title: '贷款金额', unresize: true}
                 , {field: 'applicate_time', title: '申请时间', unresize: true}
             ]]
+        });
+
+        layui.use('upload', function () {
+            var $ = layui.jquery, upload = layui.upload;
+
+            //指定允许上传的文件类型
+            upload.render({
+                elem: '#test3'
+                ,
+                url: 'loan/loanUpload?studentSno=' + studentId + '&loanAmount=' + payfeee
+                ,
+                accept: 'file'
+                ,
+                acceptMime: 'application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+                ,
+                done: function (res) {
+                    window.location.href = 'edupay_loanApplicate.html?payfee_id=' + payfeeId + '&studentId=' + studentId;
+                }
+            });
         });
     });
 </script>

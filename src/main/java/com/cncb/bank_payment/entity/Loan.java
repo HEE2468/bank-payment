@@ -18,11 +18,12 @@ public class Loan {
     private Float loanAmount;
     private String loanName;
     private Integer status;
+    private String payfeeId;
 
     public Loan() {
     }
 
-    public Loan(String id, String studentSno, String accountId, String applicateFile, Timestamp applicateTime, Float loanAmount, String loanName, Integer status) {
+    public Loan(String id, String studentSno, String accountId, String applicateFile, Timestamp applicateTime, Float loanAmount, String loanName, Integer status, String payfeeId) {
         this.id = id;
         this.studentSno = studentSno;
         this.accountId = accountId;
@@ -31,6 +32,7 @@ public class Loan {
         this.loanAmount = loanAmount;
         this.loanName = loanName;
         this.status = status;
+        this.payfeeId = payfeeId;
     }
 
     public String getId() {
@@ -95,5 +97,13 @@ public class Loan {
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public String getPayfeeId() {
+        return payfeeId;
+    }
+
+    public void setPayfeeId(String payfeeId) {
+        this.payfeeId = payfeeId;
     }
 }
