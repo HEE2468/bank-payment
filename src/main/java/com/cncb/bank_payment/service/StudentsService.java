@@ -16,5 +16,5 @@ public interface StudentsService {
      * @date: 2019/12/11
      * @return: java.lang.String
      */
-    String findStudent(InputParameter parameter);
+    String findStudent(String stdname, String stdnum, String schoolname);
 }

@@ -12,7 +12,9 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -30,7 +32,16 @@ public class PayfeeInfoServiceImpl implements PayfeeInfoService {
 
     @Override
     public List<Map<String, Object>> getPayfee(String studentId) {
-        return payfeeInfoDao.getPayfeeFromStudentId(studentId);
+        List<Map<String, Object>> temp = payfeeInfoDao.getPayfeeFromStudentId(studentId);
+        List<Map<String, Object>> result = new ArrayList<>();
+        Map<Object, Object> map = new HashMap<>();
+        for (int i = 0; i < temp.size(); i++) {
+            if(!map.containsKey(temp.get(i).get("payfee_id"))) {
+                map.put(temp.get(i).get("payfee_id"), temp.get(i).get("payfee_date"));
+                result.add(temp.get(i));
+            }
+        }
+        return result;
     }
 
     @Override
